@@ -1,0 +1,3 @@
+--debug=true
+--enable_cluster_hibernate_resume=True
+--run_parallel=true

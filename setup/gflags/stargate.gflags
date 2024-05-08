@@ -1,0 +1,4 @@
+--activity_tracer_default_sampling_frequency=1
+--binary_logging_enabled=False
+--stargate_erasure_code_threshold_seconds=8200
+--medusa_binary_log_enabled=false

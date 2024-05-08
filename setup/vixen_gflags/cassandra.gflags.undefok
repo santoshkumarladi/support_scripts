@@ -1,0 +1,2 @@
+#-cassandra_enable_delta_scans_for_leader_only_read_scans=false
+--undefok=

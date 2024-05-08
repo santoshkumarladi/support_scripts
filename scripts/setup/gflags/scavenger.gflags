@@ -1,0 +1,5 @@
+--remove_file_on_archive_failure=false
+--min_interval_secs=5
+--interval_secs=15
+--timeout_secs=1200
+--archive_url=local:///mnt/archive/

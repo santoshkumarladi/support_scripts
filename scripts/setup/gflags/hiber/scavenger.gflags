@@ -1,0 +1,8 @@
+--skip_nested_dir=true
+--compress_files_to_archive=false
+--archive_url=local:///mnt/archive/310521-132615_FF9832
+--remove_file_on_archive_failure=false
+--timeout_secs=1200
+--use_lz4_compression=false
+--min_interval_secs=5
+--interval_secs=15

@@ -1,0 +1,7 @@
+--data_collect_extended_period_secs=10
+--heap_stats_collect_period_secs=300
+--out_dir=/home/nutanix/data/logs/sysstats
+--data_collect_period_secs=5
+--max_log_size_MB=100
+--collect_heap_stats=True
+

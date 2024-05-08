@@ -1,0 +1,2 @@
+--binary_log_trace_level=1
+--binary_logging_enabled=true

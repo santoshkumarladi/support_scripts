@@ -1,0 +1,2 @@
+--stargate_block_store_enabled=True
+--spdk_enabled=True

@@ -1,0 +1,9 @@
+[global]
+bs=4k
+iodepth=1
+direct=1
+ioengine=sync
+invalidate=1
+rw=randwrite
+runtime=3600
+--time_based

@@ -1,0 +1,9 @@
+--paths=/home/nutanix/data/logs,/home/nutanix/data/cores,/home/nutanix/data/binary_logs
+--skip_nested_dir=true
+--compress_files_to_archive=false
+--archive_url=local:///mnt/archive/latest
+--remove_file_on_archive_failure=false
+--threshold_size_MB=2048,6144,1024
+--timeout_secs=3600
+--use_lz4_compression=false
+--min_interval_secs=0

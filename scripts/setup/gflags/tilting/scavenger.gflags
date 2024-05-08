@@ -1,0 +1,7 @@
+--archive_url=local:///mnt/archive/NORCROSS2020
+--paths=/home/nutanix/data/logs,/home/nutanix/data/cores,/home/nutanix/data/binary_logs
+--timeout_secs=3600
+--threshold_size_MB=2048,6144,1024
+--compression_level=0
+--compress_files_to_archive=false
+--min_interval_secs=0

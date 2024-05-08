@@ -1,0 +1,4 @@
+--debug=true
+--stargate_block_store_enabled=False
+--log_thread_name=true
+--run_parallel=true

@@ -1,0 +1,5 @@
+--log_generate_coredump_on_failure=false
+--init_nutanix_core_dir=/home/nutanix/data/cores
+--enable_binary_logging=false
+--binary_logging_enabled=false
+--undefok=log_generate_coredump_on_failure,init_nutanix_core_dir,enable_binary_logging,binary_logging_enabled

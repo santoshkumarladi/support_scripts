@@ -1,0 +1,2 @@
+--binary_logging_enabled=false
+--activity_tracer_default_sampling_frequency=1

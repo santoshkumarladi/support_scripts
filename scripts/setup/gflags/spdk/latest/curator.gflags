@@ -1,0 +1,6 @@
+--binary_logging_enabled=False
+--curator_binary_logging_enabled=False
+--curator_erasure_code_threshold_seconds=8200
+--curator_erasure_code_encode_immutable_vdisk_delay_seconds=8200
+--curator_dedup_extents_time_secs=7200
+--activity_tracer_default_sampling_frequency=1

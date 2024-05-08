@@ -1,0 +1,12 @@
+--cassandra_snapshot_interval_secs=900
+--max_times_heap_usage_over_critical_limit=1
+--binary_logging_enabled=true
+--init_nutanix_core_dir=/home/nutanix/data/cores
+--enable_binary_logging=true
+--max_times_heap_usage_over_limit=3
+--log_generate_coredump_on_failure=true
+--time_secs_to_stay_alive_before_considered_for_ring_add=900
+--cassandra_enable_gc_logs=true
+--time_secs_to_wait_before_detaching_failed_cassandra_node=1800
+--daemon_debug_info_wait_time_secs=30
+

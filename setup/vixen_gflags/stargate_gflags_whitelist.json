@@ -1,0 +1,6 @@
+[
+  "activity_tracer_default_sampling_frequency", 
+  "latency_tracker_sampling_frequency", 
+  "perf_test.*", 
+  "v"
+]

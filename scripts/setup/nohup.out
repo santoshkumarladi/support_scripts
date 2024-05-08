@@ -1,0 +1,44 @@
+Nutanix Controller VM
+Nutanix Controller VM
+Nutanix Controller VM
+Nutanix Controller VM
+2019-10-25 01:36:44 INFO scavenger.py:545 Creating archive handler for: local:////mnt/cdp_fit
+2019-10-25 01:36:44 INFO ipv4config.py:821 Netmask is 255.255.254.0
+2019-10-25 01:36:44 INFO ipv4config.py:855 Discovered network information: hwaddr 50:6b:8d:d9:5c:65, address 10.46.32.125, netmask 255.255.254.0, gateway 10.46.32.1, vlan None
+2019-10-25 01:36:44 INFO scavenger.py:383 Local node ip: 10.46.32.125
+2019-10-25 01:36:44 INFO scavenger.py:422 Target dir: //mnt/cdp_fit/10.46.32.125
+2019-10-25 01:36:44 INFO scavenger.py:1997 Resetting Scavenger watchdog.
+2019-10-25 01:36:44 INFO scavenger.py:1971 Running Scavenger watchdog.
+2019-10-25 01:36:44 INFO zookeeper_session.py:143 scavenger.py is attempting to connect to Zookeeper
+2019-10-25 01:36:44 ERROR configuration.py:70 Zookeeper host port list is not set
+2019-10-25 01:36:44 CRITICAL genesis_utils.py:2141 Unable to initialize configuration object
+Nutanix Controller VM
+2019-10-25 01:36:51 INFO scavenger.py:545 Creating archive handler for: local:////mnt/cdp_fit
+2019-10-25 01:36:51 INFO ipv4config.py:821 Netmask is 255.255.254.0
+2019-10-25 01:36:51 INFO ipv4config.py:855 Discovered network information: hwaddr 50:6b:8d:ea:62:b5, address 10.46.32.127, netmask 255.255.254.0, gateway 10.46.32.1, vlan None
+2019-10-25 01:36:51 INFO scavenger.py:383 Local node ip: 10.46.32.127
+2019-10-25 01:36:51 INFO scavenger.py:422 Target dir: //mnt/cdp_fit/10.46.32.127
+2019-10-25 01:36:51 INFO scavenger.py:1997 Resetting Scavenger watchdog.
+2019-10-25 01:36:51 INFO scavenger.py:1971 Running Scavenger watchdog.
+2019-10-25 01:36:51 INFO zookeeper_session.py:143 scavenger.py is attempting to connect to Zookeeper
+2019-10-25 01:36:51 ERROR configuration.py:70 Zookeeper host port list is not set
+2019-10-25 01:36:51 CRITICAL genesis_utils.py:2141 Unable to initialize configuration object
+2019-10-25 01:36:52 INFO scavenger.py:545 Creating archive handler for: local:////mnt/cdp_fit
+2019-10-25 01:36:52 INFO ipv4config.py:821 Netmask is 255.255.254.0
+2019-10-25 01:36:52 INFO ipv4config.py:855 Discovered network information: hwaddr 50:6b:8d:f8:22:e4, address 10.46.32.126, netmask 255.255.254.0, gateway 10.46.32.1, vlan None
+2019-10-25 01:36:52 INFO scavenger.py:383 Local node ip: 10.46.32.126
+2019-10-25 01:36:52 INFO scavenger.py:422 Target dir: //mnt/cdp_fit/10.46.32.126
+2019-10-25 01:36:52 INFO scavenger.py:1997 Resetting Scavenger watchdog.
+2019-10-25 01:36:52 INFO scavenger.py:1971 Running Scavenger watchdog.
+2019-10-25 01:36:52 INFO zookeeper_session.py:143 scavenger.py is attempting to connect to Zookeeper
+2019-10-25 01:36:52 ERROR configuration.py:70 Zookeeper host port list is not set
+2019-10-25 01:36:52 CRITICAL genesis_utils.py:2141 Unable to initialize configuration object
+2019-10-25 01:36:53 INFO scavenger.py:545 Creating archive handler for: local:////mnt/cdp_fit
+2019-10-25 01:36:53 INFO ipv4config.py:821 Netmask is 255.255.254.0
+2019-10-25 01:36:53 INFO ipv4config.py:855 Discovered network information: hwaddr 50:6b:8d:82:fd:94, address 10.46.32.128, netmask 255.255.254.0, gateway 10.46.32.1, vlan None
+2019-10-25 01:36:53 INFO scavenger.py:383 Local node ip: 10.46.32.128
+2019-10-25 01:36:53 INFO scavenger.py:422 Target dir: //mnt/cdp_fit/10.46.32.128
+2019-10-25 01:36:53 INFO scavenger.py:1997 Resetting Scavenger watchdog.
+2019-10-25 01:36:53 INFO zookeeper_session.py:143 scavenger.py is attempting to connect to Zookeeper
+2019-10-25 01:36:53 ERROR configuration.py:70 Zookeeper host port list is not set
+2019-10-25 01:36:53 CRITICAL genesis_utils.py:2141 Unable to initialize configuration object

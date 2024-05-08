@@ -1,0 +1,30 @@
+#m h  dom mon dow   command
+MAILTO=""
+* * * * * /usr/bin/timeout 60s bash -lc "/home/nutanix/serviceability/bin/using-gflags /home/nutanix/serviceability/bin/cron_serviceability.py" >/dev/null 2>&1
+
+# Flush emails every minute.
+* * * * * /usr/bin/timeout 180s /usr/bin/flock -x -n /tmp/send-email.lock -c 'bash -lc "/home/nutanix/serviceability/bin/using-gflags /home/nutanix/serviceability/bin/send-email"' >/dev/null 2>&1
+
+# Schedule autosupport email hourly.
+@hourly /usr/bin/timeout 1h bash -lc "/home/nutanix/serviceability/bin/using-gflags /home/nutanix/serviceability/bin/support-info --as_email --cluster_statistics=true --human_readable_format=true" >/dev/null 2>&1
+
+# Schedule cluster health status check every 5m.
+*/5 * * * * /usr/bin/timeout 5m bash -lc "/home/nutanix/serviceability/bin/using-gflags /home/nutanix/serviceability/bin/check_cluster_health_service.py" >/dev/null 2>&1
+
+# Send daily alert email digest
+@daily /usr/bin/timeout 24h bash -lc "/home/nutanix/serviceability/bin/using-gflags /home/nutanix/serviceability/bin/send_alert_email_digest.py" >/dev/null 2>&1
+
+# Download if any latest version is available.
+@daily /usr/bin/timeout 24h bash -lc "/home/nutanix/serviceability/bin/using-gflags /home/nutanix/cluster/bin/automatic_download_support" >/dev/null 2>&1
+
+# Daily clean up 1 day old files in /tmp.
+@daily /usr/bin/timeout 24h bash -lc "if [ -x /usr/bin/tmpwatch ]; then /usr/bin/tmpwatch -X '/tmp/hsperfdata_*' -X '/tmp/*.lock' -X '/tmp/NTNX.serial.out.*' -X '/tmp/raid_upgrade.log' -s -vv 1d /tmp 2>&1 | logger -t TMPWATCH; fi;"
+
+# Cronjob for NCC
+@hourly /usr/bin/timeout 1h bash -lc "/home/nutanix/serviceability/bin/using-gflags ncc --ncc_send_email=1 --ncc_plugin_output_file=/home/nutanix/data/logs/ncc_email_digest.log --acquire_ncc_lock=0 health_checks run_all" >/dev/null 2>&1
+
+# ENG-170148: Cleanup semaphores leaked by Apache
+@hourly /usr/bin/timeout 1h /bin/bash /usr/local/nutanix/prism/bin/apache_semaphore_cleanup >>/home/nutanix/data/prism/apache_semaphore_log 2>&1
+* * * * * /bin/bash -lc "/usr/bin/flock -x -n /home/nutanix/.vip_service/vip_monitor -c '/home/nutanix/bin/vip_monitor --vip_monitor_enable_self_monitoring=true --local_svm_id=13 |& /home/nutanix/bin/logpipe -o /home/nutanix/data/logs/vip_monitor.out'"
+
+@reboot sudo mount 10.40.231.197:/volume1 /mnt/archive

@@ -1,0 +1,1019 @@
+#!/usr/bin/python
+
+from __future__ import division
+import sys, getopt,os,re
+import pandas as pd
+import random
+import string
+import time
+import itertools
+import pexpect
+import lxml
+import threading
+import subprocess
+from collections import defaultdict
+from datetime import datetime, timedelta
+
+def totimestamp(dt, epoch=datetime(1970,1,1)):
+    td = dt - epoch
+    # return td.total_seconds()
+    return (td.microseconds + (td.seconds + td.days * 86400) * 10**6) / 10**6 
+
+
+def get_crator_master(cvm,userid,svmips):
+    cu_m = 'none'
+    """
+    run = "ssh "+cvm+" -l "+userid+" /usr/local/nutanix/cluster/bin/svmips"
+    print run
+    output = (os.popen(run).read()).split('\n')
+    svmips = output[0].split()
+    """
+    for  svmip in svmips:
+        try :
+            url =r'http://'+svmip+':2010'
+            print url
+            tables = pd.read_html(url,match='Master')
+            op = tables[1].values.tolist()
+            for r in op:
+                if 'Master' in r:
+                    print "Curator Master --> "+r[1]
+                    cu_m = r[1]
+        except :
+            print "Error in get_crator_master or Not master"
+            run = "ssh "+cvm+" -l "+userid+" \"source /etc/profile; /usr/local/nutanix/bin/curator_cli get_master_location | grep \\\"Master handle\\\"\""
+            print run
+            #cu_m = (os.popen(run).read()).split('|')[2].strip()
+            cu_m = (os.popen(run).read()).split('|')[2].strip()
+            print cu_m
+            print '/'+cu_m+'/'
+            if cu_m != 'none' :
+                return cu_m
+
+    if cu_m == 'none' :
+        print "Not able to find curator master "
+        run = "ssh "+cvm+" -l "+userid+" \"source /etc/profile; /usr/local/nutanix/bin/curator_cli get_master_location | grep \\\"Master handle\\\"\""
+        print run
+        cu_m = (os.popen(run).read()).split('|')[2].strip()
+        if cu_m != 'none' :
+            return cu_m
+        #time.sleep(300)
+    else :
+        print "----------------> "+cu_m
+        return cu_m
+
+def getHostVmList(cvm):
+    hostvm = defaultdict(list)
+    ssh = "ssh "+cvm+" -l nutanix "
+    acli = " /usr/local/nutanix/bin/acli -y"
+    ncli = " /home/nutanix/prism/cli/ncli "
+
+    run = "ssh "+cvm+" -l nutanix /usr/local/nutanix/cluster/bin/hostips"
+    output = (os.popen(run).read()).split('\n')
+    hostips = output[0].split()
+    print hostips
+
+    for host in hostips:
+        try :
+            cmd = ssh+" ssh root@"+host+" virsh list | grep CVM"
+            print cmd
+            cvm = (os.popen(cmd).read()).split()[1]
+            if 'CVM' in cvm :
+                cmd = ssh+acli+" host.list_vms "+host+" | grep -v vgclient | grep -v bigVm | grep -v auto | grep -v ltss"
+                print cmd
+                op = (os.popen(cmd).read()).split('\n')
+                hostvm[cvm] = []
+                for i in range(1,len(op)-1):
+                     hostvm[cvm].append(op[i].split()[0])
+                     print op[i].split()[0]
+        except:
+            print "Failed to get the CVM usage"
+    return hostvm
+
+
+def get_tier_links(cvm,userid,tier,curator_master,svmips):
+    try :
+
+        cmd = "ssh "+cvm+" -l nutanix \"links http:"+curator_master+"/master/tierusage -dump | grep -A 15 \'ILM Down\'\""
+        print cmd
+        output = subprocess.check_output(cmd, shell=True)
+        output_str = output.decode('utf-8')
+        print output_str
+        tables = pd.read_csv(pd.compat.StringIO(output_str), header=None)
+        print tables[1]
+        op = tables[1].to_dict()
+        print "tier "+str(tier)
+        pct = op['Tier Usage Pct'][tier][:-1]
+        print op['Tier Usage Pct'][tier]
+        print "Current Tier usage is ->> "+str(pct)
+        if pct:
+            return int(pct)
+    except :
+        print "Error in get_tier_links"
+        sys.exit(2)
+
+def get_tierusage(cvm,userid,tier,svmips):
+    curator_master = get_crator_master(cvm,userid,svmips)
+    pct = get_tier_links(cvm,userid,tier,curator_master,svmips)
+    while curator_master == 'none':
+        curator_master = get_crator_master(cvm,userid,svmips)
+    curator_master.strip()
+    try :
+        url =r'http://'+curator_master+'/master/tierusage'
+        print url
+        tables = pd.read_html(url)
+        print tables[1]
+        op = tables[1].to_dict()
+        print "tier "+str(tier)
+        pct = op['Tier Usage Pct'][tier][:-1]
+        print op['Tier Usage Pct'][tier]
+        print "Current Tier usage is ->> "+str(pct)
+        if pct:
+            return int(pct)
+    except :
+        print "Error in get_tierusage"
+        #sys.exit(2)
+        #time.sleep(300)
+        pct = get_tier_links(cvm,userid,tier,curator_master,svmips)
+        if pct:
+            return int(pct)
+    
+
+
+
+def get_tierus(cvm,userid,tier,svmips):
+    curator_master = get_crator_master(cvm,userid,svmips)
+    while curator_master == 'none':
+        curator_master = get_crator_master(cvm,userid,svmips)
+    if curator_master:
+        curator_master.strip() 
+    try :
+        url =r'http://'+curator_master+'/master/tierusage'
+        print url
+        tables = pd.read_html(url)
+        print tables[1]
+        op = tables[1].to_dict()
+        print "tier "+str(tier)
+        pct = op['Tier Usage Pct'][tier][:-1]
+        print op['Tier Usage Pct'][tier]
+        print "Current Tier usage is ->> "+str(pct)
+        if pct:
+            return int(pct)
+
+    except Exception as e:
+    #except :
+        print "Error in get_tierusage"
+        print e
+        sys.exit(2)
+
+def get_disklist(cvm,userid):
+    diskList = {}
+    diskList = defaultdict(list)
+    ncli = " /home/nutanix/prism/cli/ncli "
+    ssh = "ssh "+cvm+" -l "+userid
+    state=1
+    
+    run = ssh +ncli+"disk list | grep Id | grep -v \"Storage Pool Id\"" 
+    diskid = (os.popen(run).read()).split('\n')
+    #print diskid
+    run = ssh +ncli+"disk list | grep \"Controller VM Address\""
+    cntrlid = (os.popen(run).read()).split('\n')
+    #print cntrlid
+    run = ssh +ncli+"disk list | grep \"Mount Path\"" 
+    mntpath = (os.popen(run).read()).split('\n')
+    #print mntpath
+    run = ssh +ncli+"disk list | grep  \"Storage Tier\"" 
+    typeD = (os.popen(run).read()).split('\n')
+    #print typeD
+
+    for (i,j,k,l) in itertools.izip(diskid,cntrlid,mntpath,typeD):
+        if l:
+            did = (i.split())[2]
+            cid = (j.split(':'))[1]
+            dsd = (((k.split(':'))[1]).split('/'))[6]
+            typ = (l.split(':'))[1]
+            #print did+" "+cid+" "+dsd+" "+typ
+            
+            diskList[cid].append({'diskid' :  did ,'typed' :  typ ,'dsid' :  dsd , 'state' : state })
+    return diskList
+
+def isDiskFailing(cvm):
+    ssh = "ssh "+cvm+" -l nutanix"
+    ncli = " /home/nutanix/prism/cli/ncli "
+    run = ssh +ncli+"disk get-remove-status " 
+    op = os.popen(run).read()
+    op = op.strip()
+    print "Disk fail --> "+op
+    if op == '[None]':
+        return 0
+    else :
+        return 1 
+
+
+def isHostFailing(cvm):
+    ssh = "ssh "+cvm+" -l nutanix"
+    ncli = " /home/nutanix/prism/cli/ncli "
+    run = ssh +ncli+"host get-remove-status " 
+    op = os.popen(run).read()
+    op = op.strip()
+    print "Host fail --> "+op
+    if op == '[None]':
+        return 0
+    else :
+        return 1 
+
+def disk_fail(cvm,darray,offset,userid,dtype,tier,svmips,last_diskfail,wait):
+
+    last_diskfail = int (totimestamp(datetime.now())) 
+    ssh = "ssh "+cvm+" -l "+userid
+    did = darray[offset]['diskid']
+    typed = darray[offset]['typed']
+    dsid = darray[offset]['dsid']
+    
+    
+    acli = " /usr/local/nutanix/bin/acli -y "
+
+    print did , typed , dsid
+    if typed != dtype:
+    #if typed != 'SSD-PCIe':
+        cmd = ssh+" \"source /etc/profile; /usr/local/nutanix/cluster/bin/disk_operator disk_serial_to_block_device "+dsid+" \""
+        print cmd
+        op = os.popen(cmd).read()
+        match = re.match(r'(.*)Block\s+Device:(.*)', op)
+        if match is not None:
+            dev  = match.groups()[1] 
+            print "The device is --> "+dev
+            cmd = ssh+" \"source /etc/profile;  /home/nutanix/prism/cli/ncli disk rm-start force=false id="+did.split(':')[2]+" \""
+            print cmd 
+            op = os.popen(cmd).read()
+            #Disk removal successfully initiated
+            mat = re.match(r'Disk\s+removal\s+successfully\s+initiated(.*)', op)
+            
+            #Disk removal successfully initiated
+            cmd = ssh+" \" source /etc/profile; /usr/local/nutanix/apache-cassandra/bin/nodetool -h 0 ring \""
+            print cmd 
+            os.system(cmd)
+            time.sleep(120)
+            if mat is not None:
+                print "Wait for the disk remove to complete "
+                pct = get_tierusage(cvm,userid,tier,svmips)
+                if pct > 75:
+                    run = "ssh "+cvm+" -l "+userid+" \""+acli+"vm.power_cycle \* \""
+                    print run
+                    os.system(run)
+
+                while isDiskFailing(cvm):
+                    print "Another disk fail is in progress"
+                    last_diskfail = last_diskfail+wait
+                    time.sleep(wait)
+                    print " last_diskfail -> "+str(last_diskfail)
+                #Successfully repartitioned disk /dev/sdf and added it to zeus
+                if not isDiskFailing(cvm):
+                    print "Repartion and Add the disk back "
+                    cmd = ssh+" \"source /etc/profile; /usr/local/nutanix/cluster/bin/disk_operator --hades_rpc_timeout_secs=60 repartition_add_zeus_disk "+dev +"\""
+                    print cmd
+                    p = re.compile('Successfully\s+repartitioned\s+disk\s+'+dev+'\s+and\s+added\s+it\s+to\s+zeus')
+                    ma = p.match( (os.popen(cmd).read()))
+                    if ma is not None:
+                        print "Successfully repartitioned disk" 
+            else :
+                print "Disk Removal output --> "+op
+                offset = offset+1
+        else :
+            offset = offset+1
+
+    return last_diskfail
+
+def disk_offline(cvm,darray,offset,userid,svmips,last_diskfail,wait):
+
+    last_diskfail = int (totimestamp(datetime.now())) 
+    ssh = "ssh "+cvm+" -l "+userid
+    dsid = darray[offset]['dsid']
+    
+    
+    acli = " /usr/local/nutanix/bin/acli -y "
+
+    if darray[offset]['state']:
+        cmd = ssh+" \"source /etc/profile; /usr/local/nutanix/cluster/bin/disk_operator set_planned_outage "+dsid+" \""
+        print cmd
+        op = os.popen(cmd).read()
+        #match = re.match(r'(.*)Successfully\s+set\s+planned\s+outage(.*)', op)
+        #if match is not None:
+        if not op:
+            print "Mark This device offline  "+dsid
+            #Disks ['S3F6NX0K601071'] marked unusable
+            cmd = ssh+" \"source /etc/profile; /usr/local/nutanix/cluster/bin/disk_operator mark_disks_unusable "+dsid+" \""
+            print cmd 
+            op = os.popen(cmd).read()
+            #Disk removal successfully initiated
+            mat = re.match(r'Disks\s+(.*)marked\s+unusable', op)
+            if mat is not None:
+                darray[offset]['state'] =0
+                time.sleep(wait)
+                cmd = ssh+" \"source /etc/profile; /usr/local/nutanix/cluster/bin/disk_operator mark_disks_usable "+dsid+" \""
+                print cmd 
+                op = os.popen(cmd).read()
+                #Disk removal successfully initiated
+                ma = re.match(r'Disks\s+(.*)marked\s+usable', op)
+                if ma is not None:
+                    print "Successfully repartitioned disk" 
+                    darray[offset]['state'] =1
+        else :
+            print "Disk Removal output --> "+op
+            offset = offset+1
+    else :
+        offset = offset+1
+
+
+"""
+Hypervisor IP  Hypervisor DNS Name  Host UUID                             Node state              Connected  Node type       Schedulable  Hypervisor Name  CVM IP
+10.40.225.131  10.40.225.131        64bc6abf-ff07-4985-b653-370f7faf4b87  AcropolisNormal         False      Hyperconverged  False        AHV              10.40.225.134
+10.40.225.132  10.40.225.132        a6d97bbb-f9f1-415e-b0a6-c0fcf07a4deb  AcropolisNormal         False      Hyperconverged  False        AHV              10.40.225.135
+10.40.225.133  10.40.225.133        589df5d7-ed9e-4880-9b1e-3e747a28892d  AcropolisNormal         False      Hyperconverged  False        AHV              10.40.225.136
+10.40.225.145  10.40.225.145        818cf59c-0f4c-4b9f-b5b7-84efe39af919  EnteredMaintenanceMode  False      Hyperconverged  False        AHV              10.40.225.146
+10.40.225.149  10.40.225.149        5d73b836-21be-48d7-9baf-764de750f0aa  AcropolisNormal         False      Hyperconverged  False        AHV              10.40.225.150
+"""
+
+def get_failnode(cvm,svmips):
+    acli = " /usr/local/nutanix/bin/acli -y "
+    ssh = "ssh "+cvm+" -l nutanix"
+
+    run = ssh +acli+"host.list "
+    print run
+
+    op = os.popen(run).read()
+    op = op.strip()
+    #print "Op ---> "+op
+    if op :
+        output = op.split('\n')
+        for i in range(1,len(output)-1):
+            if output[i].split()[3] != 'AcropolisNormal':
+                print "Fail node --> "+output[i].split()[-1]
+                return output[i].split()[-1]
+        return 'None'
+
+    else :
+        print "return the down cvm -- > "+cvm
+        return cvm
+
+
+def get_svmips(cvm):
+    svmips = []
+    acli = " /usr/local/nutanix/bin/acli -y "
+    ssh = "ssh "+cvm+" -l nutanix"
+    run = ssh +acli+"host.list "
+    print run
+
+    op = os.popen(run).read()
+    op = op.strip()
+    #print "Op ---> "+op
+    if op :
+        output = op.split('\n')
+        for i in range(1,len(output)):
+            if output[i].split()[3] == 'AcropolisNormal':
+                svmips.append(output[i].split()[-1])
+
+        return svmips 
+
+"""
+Hypervisor IP  Hypervisor DNS Name  Host UUID                             Compute Only  Schedulable  Hypervisor Type  Hypervisor Name  CVM IP
+10.40.225.131  10.40.225.131        1e7048f3-b714-4edd-ac98-406b805b0f60  False         True         kKvm             AHV              10.40.225.134
+"""
+
+def get_host(cvm):
+    hostList = {}
+    hostList = defaultdict(list)
+    acli = " /usr/local/nutanix/bin/acli -y "
+    ssh = "ssh "+cvm+" -l nutanix"
+    run = ssh +acli+"host.list "
+    #print run
+    op = os.popen(run).read()
+    op = op.strip()
+    #print "Op ---> "+op
+    if op :
+        output = op.split('\n')
+        for i in range(1,len(output)):
+            hyp = output[i].split()[1]
+            hostList[hyp].append({'hyip' :  output[i].split()[0] ,'svmip' :  output[i].split()[-1] ,'uuid' :  output[i].split()[2] ,'state' : output[i].split()[3] })
+    return hostList
+
+
+
+"""
+    Id                        : 0005c27e-62e5-5153-0000-000000011f5b::15
+    Uuid                      : 00831650-4ea6-47c7-9243-617f782c6d67
+    Name                      : ash04-2
+    IPMI Address              : 10.49.13.147
+    Controller VM Address     : 10.40.225.90
+    Controller VM NAT Address :
+    Controller VM NAT PORT    :
+    Hypervisor Address        : 10.40.225.86
+    Hypervisor Version        : Nutanix 20201105.500204
+    Host Status               : NORMAL
+    Oplog Disk Size           : 109.72 GiB (117,810,965,485 bytes) (2.6%)
+    Under Maintenance Mode    : null (-)
+    Metadata store status     : Metadata store enabled on the node
+    Node Position             : Node physical position can't be displayed for this model. Please refer to Prism UI for this information.
+    Node Serial (UUID)        : ZM16CS037491
+    Block Serial (Model)      : Rack5Block1 (NX-3060-G5)
+"""
+def get_details_host(cvm):
+    List = {}
+    List = defaultdict(dict)
+    #hostList = get_host(cvm)
+
+    ncli = " /home/nutanix/prism/cli/ncli "
+    ssh = "ssh "+cvm+" -l nutanix"
+    run = ssh +ncli+"host list "
+    print run
+    op = os.popen(run).read()
+    op = op.strip()
+    if op :
+        i=0
+        output = op.split('\n')
+        while i < len(output):
+            if output[i]:
+                if output[i].split(" : ")[0].strip() == "Id":
+                    j=0
+                    svmList = {}
+                    while j<5 and i < len(output) :
+                        (key,val)=output[i].split(" : ")
+                        key=key.strip()
+                        svmList[key] =  val
+                        j=j+1
+                        i=i+1
+                        if j == 4:
+                            List[output[i].split(" : ")[1]]=svmList
+            i=i+1 
+    return List
+"""
+<ncli> container list name=long_test_cont_1
+
+    Id                        : 0005c37a-193e-73c6-0000-00000002550b::3817
+    Uuid                      : 0dcd5a3a-ff3a-4ecf-b54f-24a91e4881a1
+    Name                      : long_test_cont_1
+    Storage Pool Id           : 0005c37a-193e-73c6-0000-00000002550b::13
+    Storage Pool Uuid         : 30ab9555-6e75-40cb-9877-5ce2cf65bc44
+    Free Space (Logical)      : 25.46 TiB (27,994,030,808,904 bytes)
+    Used Space (Logical)      : 716.2 GiB (769,011,184,681 bytes)
+    Allowed Max Capacity      : 26.16 TiB (28,763,041,993,586 bytes)
+    Used by other Containers  : 7.57 TiB (8,319,722,206,763 bytes)
+    Explicit Reservation      : 0 bytes
+    Thick Provisioned         : 0 bytes
+    Replication Factor        : 2
+    Oplog Replication Factor  : 2
+    NFS Whitelist Inherited   : true
+    Container NFS Whitelist   :
+    VStore Name(s)            : long_test_cont_1
+    Random I/O Pri Order      : SSD-PCIe, SSD-SATA, DAS-SATA
+    Sequential I/O Pri Order  : SSD-PCIe, SSD-SATA, DAS-SATA
+    Compression               : on
+    Compression Delay         : 0 mins
+    Fingerprint On Write      : on
+    On-Disk Dedup             : post-process
+    Erasure Code              : off
+    Software Encryption       : off
+"""
+
+def get_details_ctr(cvm,patt):
+    List = {}
+    List = defaultdict(dict)
+    #hostList = get_host(cvm)
+
+    ncli = " /home/nutanix/prism/cli/ncli "
+    ssh = "ssh "+cvm+" -l nutanix"
+    run = ssh +ncli+"container list | grep \"Name \" | grep "+str(patt)
+    print run
+    ctr = os.popen(run).read()
+    if ctr:
+        ctr = ctr.split('\n')
+        for ctrN in ctr:
+            if ctrN:
+                svmList = {}
+                name = ctrN.split(" : ")[1]
+                run = ssh +ncli+"container list name="+str(name)
+                print run
+                op = os.popen(run).read()
+                output = op.split('\n')
+                for i in range( 1,len(output)):
+                    if output[i]:
+                        (key,val)=output[i].split(" : ")
+                        key=key.strip()
+                        #print "key "+str(key)+" val "+str(val)
+                        svmList[key] =  val
+                List[name]=svmList
+    return List
+
+
+def ensure_node_removal(cvm,Id):
+    ncli = " /home/nutanix/prism/cli/ncli -hidden=true "
+    ssh = "ssh "+cvm+" -l nutanix"
+    run = ssh +ncli+"host get-remove-status id="+str(Id)
+    print run
+    op = os.popen(run).read()
+    if op == '[None]':
+        return True
+    return False
+
+
+def ensure_node_attach(host,hostlist):
+    ssh = "ssh "+host+" -l nutanix"
+    cvmip = hostlist['Controller VM Address']
+    cmd = ssh+" \"source /etc/profile; /usr/local/nutanix/apache-cassandra/bin/nodetool -h 0 ring\" | grep "+str(cvmip)
+    print cmd
+    op = os.popen(cmd).read()
+    if op.split()[2] == 'Normal':
+        return True
+    else :
+        return False
+
+def host_detach(host,hostlist,wait):
+    count=0
+    print "host_detach "+str(hostlist['Name'])
+    Id = hostlist['Id']
+    ssh = "ssh "+host+" -l nutanix"
+    ncli = " /home/nutanix/prism/cli/ncli -hidden=true "
+    run = ssh +ncli+"host delete id="+str(Id)+" skip-space-check=true force=true"
+    print run
+    op = os.popen(run).read()
+    mat = re.match(r'Host\s+removal\s+successfully\s+initiated(.*)', op)
+    if mat is not None:
+        print "Successfully started node detach "
+        while True != ensure_node_removal(host,Id) and count < 30:
+            time.sleep(wait)
+            count=count+1
+        return ensure_node_removal(host,Id)
+    else :
+        print "Failed to start node detach "
+        return False
+
+def host_attach(host,hostlist):
+    count=0
+    Id = hostlist['Uuid']
+    ncli = " /home/nutanix/prism/cli/ncli -hidden=true "
+    ssh = "ssh "+host+" -l nutanix"
+    run = ssh +ncli+"host add-node id="+str(Id)
+    print run
+    os.system(run)
+    while True != ensure_node_attach(host,hostlist) and count < 30:
+        time.sleep(wait)
+        count=count+1
+
+#container edit name=long_test_cont_4 erasure-code=on rf=2 enable-software-encryption=true enable-compression=true on-disk-dedup=POST_PROCESS inline-ec-enabled=true compression-delay=5 fingerprint-on-write=on inline-ec-enabled=true inline-ec-type=same-vdisk-strips erasure-code=on
+def ctrPropChange(cvm,ctrs):
+    ncli = " /home/nutanix/prism/cli/ncli -hidden=true "
+    ssh = "ssh "+cvm+" -l nutanix"
+    erasure_code=''
+    enable_software_encryption=''
+    enable_compression=''
+    on_disk_dedup=["none","off","post-process"]
+    inline_ec_enabled=''
+    inline_ec_type = ["same-vdisk-strips", "cross-vdisk-strips"]
+    compression_delay=[0,5,10,30,60]
+    rfs=[2,3]
+    fingerprint_on_write=''
+    comp_delay = ''
+    odp = ''
+
+    for ctr in ctrs.keys():
+        if ctrs[ctr]['Compression'] == 'on':
+            enable_compression = 'false'
+        else :
+            enable_compression = 'true'
+            comp_delay = compression_delay[random.randint(0,len(compression_delay)-1)]
+        if ctrs[ctr]['Fingerprint On Write'] == 'on':
+            fingerprint_on_write = 'off'
+        else :
+            fingerprint_on_write = 'off'
+        odp = on_disk_dedup[random.randint(0,len(on_disk_dedup)-1)]
+        rf = rfs[random.randint(0,len(rfs)-1)]
+        if ctrs[ctr]['On-Disk Dedup'] == odp:
+            odp = on_disk_dedup[random.randint(0,len(on_disk_dedup)-1)]
+        if ctrs[ctr]['Erasure Code'] == 'off':
+            print "EC -> "+str(ctrs[ctr]['Erasure Code'])
+            erasure_code = 'on'
+            inline_ec_enabled = 'true'
+            iect = inline_ec_type[random.randint(0,len(inline_ec_type)-1)]
+            ec = " erasure-code="+str(erasure_code)+" inline-ec-enabled="+str(inline_ec_enabled)+" inline-ec-type="+str(iect)
+        else:
+            erasure_code = 'off'
+            ec = " erasure-code="+str(erasure_code)
+        if odp == 'post-process':
+            fingerprint_on_write = 'on'
+        print "Before conatiner prop change - ec "+str(ctrs[ctr]['Erasure Code'])+" compression "+str(ctrs[ctr]['Compression'])+" on-disk-dedup "+str(ctrs[ctr]['On-Disk Dedup'])+ " fingerprint-on-write "+str(ctrs[ctr]['Fingerprint On Write'])
+        if comp_delay and enable_compression == 'true':
+            cmd = ssh+ncli+"container edit name="+str(ctr)+" "+ec+" enable-compression="+str(enable_compression)+" on-disk-dedup="+str(odp)+" compression-delay="+str(comp_delay)+" fingerprint-on-write="+str(fingerprint_on_write)+" rf="+str(rf)
+            print cmd
+            os.system(cmd)
+        else :
+            cmd = ssh+ncli+"container edit name="+str(ctr)+" erasure-code="+str(erasure_code)+" enable-compression="+str(enable_compression)+" on-disk-dedup="+str(odp)+" fingerprint-on-write="+str(fingerprint_on_write)+" rf="+str(rf)
+            print cmd
+            os.system(cmd)
+
+def startMigrate(cvm,vm,ctr):
+
+    ssh = "ssh "+cvm+" -l nutanix "
+    acli = " /usr/local/nutanix/bin/acli -y "
+    ncli = ssh+" /home/nutanix/prism/cli/ncli "
+    try:
+        cmd = ncli +"pd clear-schedules name=testPD_"+vm
+        print cmd
+        os.system(cmd)
+        cmd = ncli + " pd rm-snap name=testPD_"+vm+" clear-all=true "
+        print cmd
+        os.system(cmd)
+        cmd = ncli +" pd unprotect name=testPD_"+vm+" vm-names="+vm
+        print cmd
+        os.system(cmd)
+        cmd = ncli + " pd remove name=testPD_"+vm
+        print cmd
+        os.system(cmd)
+        cmd = ssh+acli+"vm.update_container "+str(vm) +" container="+str(ctr)
+        print cmd
+        os.system(cmd)
+    except Exception as e:
+        print op
+
+def conatinerMigrate(cvm,patt,wait):
+    print "Start conatner migration "
+    while 1:
+        hostvm = getHostVmList(cvm)
+        svmips = get_svmips(cvm)
+        for cvmn in hostvm.keys():
+            svm = svmips[random.randint(0,len(svmips)-1)]
+            ctrs = get_details_ctr(cvm,patt)
+            cnames= ctrs.keys()
+            ctr = cnames[random.randint(0,len(cnames)-1)]
+            if len(hostvm[cvmn]) > 0 :
+                vm = hostvm[cvmn][random.randint(0,len(hostvm[cvmn])-1)]
+                startMigrate(svm,vm,ctr)
+                time.sleep(wait)
+
+
+
+def containerOpr(cvm,patt,wait):
+
+    while 1 :
+        ctrs = get_details_ctr(cvm,patt)
+        print "Changing the conatiner properties ---->"
+        ctrPropChange(cvm,ctrs) 
+        print "Sleep after ctr prp chnages --------->"
+        time.sleep(wait)
+       
+
+def main(argv):
+    userid = 'nutanix'
+    passwd = 'nutanix/4u'
+    cvm = ''
+    wait=1200
+    tier = 1
+    diskfail = 0
+    diskoff = 0
+    hostfail = 0
+    tierusuage = 80
+    dtype = 'HDD'
+    hostL = {}
+    threads = []
+    patt=''
+
+    try:
+        opts, args = getopt.getopt(argv,"hi:t:d:w:u:f:s:p:o:",["cvm=","tier=","dtype=","wait=","tusuage=","diskflt=","hostfail=","pattern=","diskoff="])
+    except getopt.GetoptError:
+        print 'ERROR : hostOpr.py -i <cvm> -t<tier : SSD-PCIe - 0 : SSD - 1 > -d <disk type fail SSD/HDD> -s <hostfail> -f <diskfail> -o <diskoff> -p <conatiner name pattern> -w <wait> '
+        sys.exit(2)
+
+    for opt, arg in opts:
+        if opt == '-h':
+            print 'USAGE : hostOpr.py -i <cvm> -t <tier : SSD-PCIe - 0 : SSD - 1 > -d <disk type fail SSD/HDD> -s <hostfail> -f <diskfail> -o <diskoff> -p <conatiner name pattern> -w <wait> '
+            sys.exit()
+        elif opt in ("-i", "--cvm"):
+            cvm = arg
+        elif opt in ("-d", "--dtype"):
+            dtype = arg
+        elif opt in ("-t", "--tier"):
+            tier = int(arg)
+        elif opt in ("-w", "--wait"):
+            wait  = int(arg)
+        elif opt in ("-u", "--tusuage"):
+            tierusuage  = int(arg)
+        elif opt in ("-f", "--diskflt"):
+            diskfail  = int(arg)
+        elif opt in ("-o", "--diskoff"):
+            diskoff  = int(arg)
+        elif opt in ("-s", "--hostfail"):
+            hostfail  = int(arg)
+        elif opt in ("-p", "--pattren"):
+            patt  = arg
+
+    acli = " /usr/local/nutanix/bin/acli -y "
+    sshCopyid(cvm)
+
+    svmips = get_svmips(cvm)
+    for  svmip in svmips:
+        sshCopyid(svmip)
+    random.shuffle(svmips)
+    if patt:
+        svm = svmips.pop()
+        t = threading.Thread(target=conatinerMigrate, args=(svm,patt,wait))
+        threads.append(t)
+        t.start()
+        time.sleep(240)
+
+        t = threading.Thread(target=containerOpr, args=(svm,patt,wait))
+        threads.append(t)
+        t.start()
+        time.sleep(240)
+
+    if hostfail:
+        svm = svmips.pop()
+        t = threading.Thread(target=hostFail, args=(svm,tier,hostfail,tierusuage,patt,wait))
+        threads.append(t)
+        t.start()
+        time.sleep(240)
+
+    if diskoff:
+        svm = svmips.pop()
+        t = threading.Thread(target=diskOffline, args=(svm,wait))
+        threads.append(t)
+        t.start()
+        time.sleep(240)
+
+    if diskfail:
+        svm = svmips.pop()
+        t = threading.Thread(target=diskFail, args=(svm,tier,diskfail,tierusuage,dtype,wait))
+        threads.append(t)
+        t.start()
+        time.sleep(240)
+
+
+    for x in threads:
+        x.join()
+
+def hostFail(cvm,tier,hostfail,tierusuage,patt,wait):
+    userid = 'nutanix'
+    passwd = 'nutanix/4u'
+    last_hostfail=0
+    host_fail_count=0
+    buftime = 28800
+    acli = " /usr/local/nutanix/bin/acli -y "
+    hostL = get_details_host(cvm)
+    hosts = hostL.keys()
+    #for hyp in ctrs.keys():
+        #print hyp,ctrs[hyp]
+        # print hostL[hyp]['Id'],hostL[hyp]['Name'],hostL[hyp]['Uuid'],hostL[hyp]['IPMI Address']
+    #sys.exit(2)
+    while host_fail_count < len(hosts):
+        print "Wait -> "+str(wait)+" Tiar usuage limit --> "+str(tierusuage)
+        svmips = get_svmips(cvm)
+        pct = get_tierusage(cvm,userid,tier,svmips)
+        offNode= get_failnode(cvm,svmips)
+
+        if offNode == '[None]' :
+            print "No node detach / fail is running "
+        else :
+            print "Fail node  --> "+offNode
+
+        if  offNode == cvm :
+            print "Fail node and test CVM are same --> "+offNode
+            vmips = svmips.remove(cvm)
+            print "Removed the fail node from the list --> "+vmips
+            svm = random.shuffle(vmips).pop()
+            print "New test CVM  --> "+svm
+
+        if pct < tierusuage:
+            run = "ssh "+cvm+" -l "+userid+" \""+acli+"vm.on \* \""
+            print run
+            os.system(run)
+            time.sleep(wait)
+
+        elif pct >= tierusuage and pct <= 85:
+            if hostfail:
+                current = int (totimestamp(datetime.now()))
+                random.shuffle(svmips)
+                print svmips
+                svm = svmips.pop()
+                if cvm == svm :
+                    vmips = svmips.remove(cvm)
+                    cvm = random.shuffle(vmips).pop()
+                    
+                print "Start time -> "+str(totimestamp(datetime.now())) + " Host Fail --> "+str(hostfail)+" work on cvm -> "+str(svm)
+
+                if isHostFailing(cvm):
+                    print "Another host fail is in progress"
+                    run = "ssh "+cvm+" -l "+userid+" \""+acli+"vm.power_cycle \* \""
+                    print run
+                    os.system(run)
+                    time.sleep(wait)
+                    last_hostfail = int (totimestamp(datetime.now()))+wait
+                    print "currtn -> "+str(current)+" last_hostfail -> "+str(last_hostfail)
+
+                else :
+                    print "currtn -> "+str(current)+" last_hostfail -> "+str(last_hostfail)+" work on cvm -> "+str(hostL[svm]['Id'])
+                    if current > last_hostfail+buftime:
+                        if host_detach(cvm,hostL[svm],wait):
+                            host_fail_count = host_fail_count+1
+                            time.sleep(wait)
+                            print "start the node attach -> "+str(hostL[svm]['Id'])
+                            host_attach(cvm,hostL[svm])
+
+        elif pct > tierusuage and pct < 85:
+            print "The tier usage is heigh 2 --> "+str(pct)
+            run = "ssh "+cvm+" -l "+userid+" \""+acli+"vm.power_cycle \* \""
+            os.system(run)
+
+        elif pct < tierusuage :
+            print "The tier usage is not heigh enough--> "+str(pct)
+            run = "ssh "+cvm+" -l "+userid+" \""+acli+"vm.on \* \""
+            os.system(run)
+            time.sleep(wait)
+
+        elif pct > 85:
+            print "The tier usage is heigh 3 --> "+str(pct)
+            run = "ssh "+cvm+" -l "+userid+" \""+acli+"vm.off \* \""
+            print run
+            os.system(run)
+            time.sleep(wait)
+
+        print "No condition met going to sleep --> "+str(pct)
+
+        time.sleep(wait)
+        if host_fail_count >= len(hosts):
+            host_fail_count=0
+
+
+def diskOffline(cvm,wait):
+    userid = 'nutanix'
+    passwd = 'nutanix/4u'
+    acli = " /usr/local/nutanix/bin/acli -y "
+    global last_diskfail
+    diskL = {}
+    last_diskfail=0
+    disk_fail_count=0
+    buftime = 2880
+    diskL = get_disklist(cvm,userid)
+    nodes = diskL.keys()
+    i=offset=0
+    while 1:
+        svmips = get_svmips(cvm)
+        print svmips
+        offNode= get_failnode(cvm,svmips)
+        if offNode == '[None]' :
+            print "No node detach / fail is running "
+        else :
+            print "Fail node  --> "+offNode
+        print nodes[i]+" offset "+str(offset)+" i  " +str(i) +" no od disks on the node -> "+str(len(diskL[nodes[i]]))
+        if  offNode == nodes[i] :
+            print "Fail node and test CVM are same --> "+offNode
+            if offset < len(diskL[nodes[i]])-1:
+                offset = offset+1
+        else:
+            if isDiskFailing(cvm):
+                print "Another disk fail is in progress"
+                run = "ssh "+cvm+" -l "+userid+" \""+acli+"vm.power_cycle \* \""
+                print run
+                os.system(run)
+                time.sleep(wait)
+            else :
+                darray = diskL[nodes[i]]
+                last_diskfail = disk_offline(nodes[i],darray,offset,userid,svmips,last_diskfail,wait)
+                disk_fail_count = disk_fail_count+1
+                if offset < len(diskL[nodes[i]])-1:
+                    offset = offset+1
+                else:
+                    i=offset = 0
+            if i < len(nodes)-1:
+                i=i+1
+            else :
+                i=0
+    
+            time.sleep(wait+buftime)
+
+
+
+def diskFail(cvm,tier,diskfail,tierusuage,dtype,wait):
+    userid = 'nutanix'
+    passwd = 'nutanix/4u'
+    acli = " /usr/local/nutanix/bin/acli -y "
+    global last_diskfail
+    diskL = {}
+    last_diskfail=0
+    disk_fail_count=0
+    buftime = 28800
+    if diskfail:
+        diskL = get_disklist(cvm,userid)
+        nodes = diskL.keys()
+    """
+    for node in diskL.keys():
+        for d in diskL[node]:
+            print d['diskid'],d['typed'],d['dsid']
+    """
+    i=offset=0
+    while 1:
+        print "Wait -> "+str(wait)+" Tiar usuage limit --> "+str(tierusuage)
+        svmips = get_svmips(cvm)
+        pct = get_tierusage(cvm,userid,tier,svmips)
+        offNode= get_failnode(cvm,svmips)
+        if offNode == '[None]' :
+            print "No node detach / fail is running "
+        else :
+            print "Fail node  --> "+offNode
+
+        if  offNode == cvm :
+            print "Fail node and test CVM are same --> "+offNode
+            vmips = svmips.remove(cvm)
+            print "Removed the fail node from the list --> "+vmips
+            cvm = random.shuffle(svmips).pop
+            print "New test CVM  --> "+cvm
+
+        if pct < tierusuage:
+            run = "ssh "+cvm+" -l "+userid+" \""+acli+"vm.on \* \""
+            print run
+            os.system(run)
+            time.sleep(wait)
+        elif pct >= tierusuage and pct <= 85:
+            print totimestamp(datetime.now())
+            if diskfail:
+                current = int (totimestamp(datetime.now()))
+
+                if isDiskFailing(cvm):
+                    print "Another disk fail is in progress"
+                    run = "ssh "+cvm+" -l "+userid+" \""+acli+"vm.power_cycle \* \""
+                    print run
+                    os.system(run)
+                    time.sleep(wait)
+                    last_diskfail = int (totimestamp(datetime.now()))+wait
+                    print "currtn -> "+str(current)+" last_diskfail -> "+str(last_diskfail)
+
+                else :
+                    print "currtn -> "+str(current)+" last_diskfail -> "+str(last_diskfail)
+                    if current > last_diskfail+buftime:
+                        if nodes[i] is not None :
+                            print "Start the disk Fail Tier iusage is --> "+str(pct)
+                            if nodes[i] == offNode :
+                                i=i+1
+                            else :
+                                darray = diskL[nodes[i]]
+                                last_diskfail = disk_fail(nodes[i],darray,offset,userid,dtype,tier,svmips,last_diskfail,wait)
+                                disk_fail_count = disk_fail_count+1
+                                if i < len(diskL[nodes[i]]):
+                                    i=i+1
+                                    offset = offset+1
+                                else :
+                                    i=offset = 0
+            else :
+                print "The tier usage is heigh 1 --> "+str(pct)
+                run = "ssh "+cvm+" -l "+userid+" \""+acli+"vm.off \* \""
+                print run
+                os.system(run)
+                time.sleep(wait)
+        elif pct > tierusuage and pct < 85:
+            print "The tier usage is heigh 2 --> "+str(pct)
+            run = "ssh "+cvm+" -l "+userid+" \""+acli+"vm.power_cycle \* \""
+            os.system(run)
+        elif pct < tierusuage :
+            print "The tier usage is not heigh enough--> "+str(pct)
+            run = "ssh "+cvm+" -l "+userid+" \""+acli+"vm.on \* \""
+            os.system(run)
+        elif pct > 85:
+            print "The tier usage is heigh 3 --> "+str(pct)
+            run = "ssh "+cvm+" -l "+userid+" \""+acli+"vm.off \* \""
+            print run
+            os.system(run)
+
+        print "No condition met going to sleep --> "+str(pct)
+        time.sleep(wait)
+
+def sshCopyid(ip):
+    #ssh-copy-id -f -i ~/.ssh/id_rsa.pub  -o "StrictHostKeyChecking no" nutanix@10.46.141.102
+    passwd="nutanix/4u"
+    cmd = "ssh-keygen -R "+str(ip)
+    os.system(cmd)
+    try :
+        cmd = " /usr/bin/ssh-copy-id -f -i /home/santoshkumar.ladi/.ssh/id_rsa.pub -o StrictHostKeyChecking=no nutanix@"+str(ip)
+        print cmd
+        child = pexpect.spawn('/usr/bin/ssh-copy-id -f -i /home/santoshkumar.ladi/.ssh/id_rsa.pub -o StrictHostKeyChecking=no nutanix@%s'%(ip))
+        r=child.expect ('you wanted were added.')
+        print "Outp"+str(r)
+        if r==1:
+            cmd = " ssh "+str(ip)+" nutanix -l pwd"
+            print cmd
+            child = pexpect.spawn('ssh %s nutanix -l pwd'%(ip))
+            rsa_key = '\(yes\/no\)\?'
+            prompt = "Password:"
+            i = child.expect([rsa_key,prompt,""])
+            if i==0:
+                child.sendline('yes')
+                child.expect(prompt)
+                child.sendline(passwd)
+            elif i==1:
+                child.sendline(passwd)
+            else:
+                child.sendline(passwd)
+        child.interact()
+        child.close()
+    except Exception as e:
+        print "Oops Something went wrong buddy"
+        #print e
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
+

@@ -1,0 +1,285 @@
+import requests
+import urllib3
+import json
+import itertools
+import time
+
+# Disable SSL certificate warnings
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+
+class NutanixConnection:
+    def __init__(self, pc_ip, pc_username, pc_password, max_buffer_size=10485760):
+        self.pc_ip = pc_ip
+        self.pc_username = pc_username
+        self.pc_password = pc_password
+        self.max_buffer_size = max_buffer_size
+        self.session = self._create_session()
+
+    def _create_session(self):
+        # Create a session
+        session = requests.Session()
+        session.auth = (self.pc_username, self.pc_password)
+        session.verify = False  # Disable SSL verification (not recommended for production)
+        session.timeout = (3, 120)  # Increase stream timeout to 60 seconds
+        session.max_buffer_size = self.max_buffer_size
+        return session
+
+    #def _make_request(self, api_endpoint, payload=None):
+    def _make_request(self, api_endpoint, payload=None , method='POST'):
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+        method = str(method).upper()
+        if method not in ('GET', 'POST', 'PUT', 'DELETE'):
+            raise ValueError(f"Invalid HTTP method: {method}")
+
+        #response = self.session.post(api_endpoint, headers=headers, json=payload)
+        print(api_endpoint)
+        print()
+        response = self.session.request(method, api_endpoint, headers=headers, json=payload, stream=True)
+        if response.status_code != 200 and response.status_code != 202:
+            print (Exception(f"Request failed with status code: {response.status_code}\nError message: {response.text}"))
+
+        response_content = b""
+        for chunk in response.iter_content(chunk_size=None):
+            response_content += chunk
+
+        #if method in ('POST'):
+            #print (json.loads(response_content.decode()))
+            #return json.loads(response_content.decode())["entities"]
+        #else: 
+            #return json.loads(response_content.decode())
+        #return json.loads(response.text)["entities"]
+        return json.loads(response_content.decode())
+
+    def get_clusters(self, payload=None):
+        api_endpoint = f"https://{self.pc_ip}:9440/api/nutanix/v3/clusters/list"
+        return self._make_request(api_endpoint, payload, method='POST')
+
+    def get_vms(self, payload=None):
+        api_endpoint = f"https://{self.pc_ip}:9440/api/nutanix/v3/vms/list"
+        return self._make_request(api_endpoint, payload, method='POST')
+
+    def get_vm(self, uuid ,payload=None):
+        api_endpoint = f"https://{self.pc_ip}:9440/api/nutanix/v3/vms/{uuid}"
+        return self._make_request(api_endpoint, payload, method='GET')
+
+    def get_categories_list(self, payload=None):
+        payload = {
+            "length": 10000,
+            "offset": 0
+        }
+        api_endpoint = f"https://{self.pc_ip}:9440/api/nutanix/v3/categories/list"
+        return self._make_request(api_endpoint, payload, method='POST')
+
+    def get_sp_list(self, payload=None):
+        payload = {
+            "length": 10000,
+            "offset": 0
+        }
+        api_endpoint = f"https://{self.pc_ip}:9440/api/nutanix/v3/storage_policies/list"
+        return self._make_request(api_endpoint, payload, method='POST')
+
+    def del_sp(self, uuid, payload=None):
+        api_endpoint = f"https://{self.pc_ip}:9440/api/nutanix/v3/storage_policies/{uuid}"
+        return self._make_request(api_endpoint, payload, method='DELETE')
+
+
+    def get_category(self, category_name, payload=None):
+        api_endpoint = f"https://{self.pc_ip}:9440/api/nutanix/v3/categories/{category_name}"
+        return self._make_request(api_endpoint, payload, method='GET')
+
+    def create_category(self, category_name):
+        api_endpoint = f"https://{self.pc_ip}:9440/api/nutanix/v3/categories/{category_name}"
+        payload = {
+                    "description": "string",
+                    "name": category_name
+        }
+        return self._make_request(api_endpoint, method='PUT', payload=payload)
+
+    def create_strpol(self, pol_name,category_name,value):
+        api_endpoint = f"https://{self.pc_ip}:9440/api/nutanix/v3/storage_policies"
+        payload = {
+            "spec": {
+                "name": pol_name,
+                "resources": {
+                    "encryption": {
+                        "state": "ENABLE"
+                    },
+                    "fault_tolerance": {
+                        "replication_factor": 2
+                    },
+                    "compression": {
+                        "state": "ENABLE",
+                        "inline_compression": True
+                    },
+                    "filter_list": [
+                    {
+                        "entity_filter_expression_list": [
+                        {
+                            "operator": "IN",
+                            "right_hand_side": {
+                                "collection": "ALL"
+                            },
+                            "left_hand_side": {
+                            "entity_type": "VM"
+                            }
+                        }
+                        ],
+                      "scope_filter_expression_list": [
+                      {
+                        "operator": "IN",
+                        "right_hand_side": {
+                            "categories": {
+                              category_name: [
+                                value
+                              ]
+                            }
+                        },
+                          "left_hand_side": "CATEGORY"
+                        }
+                        ]
+                    }
+                    ]
+                },
+        "description": "This is a test storage policy"
+        },
+          "metadata": {
+            "kind": "storage_policy"
+            }
+        }
+        print(payload)
+        return self._make_request(api_endpoint, method='POST', payload=payload)
+
+    def update_category_value(self, categories, value):
+        payload = {
+            "value": value
+        }
+        api_endpoint = f"https://{self.pc_ip}:9440/api/nutanix/v3/categories/{categories}/{value}"
+        return self._make_request(api_endpoint, method='PUT', payload=payload)
+
+    def update_policy(self, uuid, payload):
+        print(payload)
+        api_endpoint = f"https://{self.pc_ip}:9440/api/nutanix/v3/storage_policies/{uuid}"
+        time.sleep(60)
+        return self._make_request(api_endpoint, method='PUT', payload=payload)
+
+    def add_vm_to_category(self, vm_uuid, category_uuid, payload):
+        api_endpoint = f"https://{self.pc_ip}:9440/api/nutanix/v3/mh_vms/{vm_uuid}"
+        return self._make_request(api_endpoint, method='PUT', payload=payload)
+
+    def batch_add_vm_to_category(self, vm_uuids, category_uuid):
+        api_endpoint = f"https://{self.pc_ip}:9440/api/nutanix/v3/vms"
+        payload = {
+            'spec': {
+               'resources': []
+            }
+        }
+
+        for vm_uuid in vm_uuids:
+            payload['spec']['resources'].append({
+                'uuid': vm_uuid,
+                'categories': [
+                    {
+                        'kind': 'category',
+                        'uuid': category_uuid
+                    }
+                ]
+            })
+
+        response = self.session.put(api_endpoint, headers=headers, json=payload)
+        if response.status_code != 200:
+            raise Exception(f"Request failed with status code: {response.status_code}\nError message: {response.text}")
+
+        return response.json()
+
+    def generate_sp_payload(self, pol_name,category_name,value,entity_type,num_policies):
+
+        payload_list = []
+        # Define possible values for each payload key
+        encryption_state_values = ['ENABLE', 'DISABLE']
+        replication_factor_values = [2, 3]
+        compression_state_values = ['ENABLE', 'DISABLE']
+        inline_compression_values = [True, False]
+
+        # Generate all combinations of payload values
+        combinations = list(itertools.product(encryption_state_values, replication_factor_values,
+                                          compression_state_values, inline_compression_values
+                                          ))
+
+        # Iterate over the combinations and limit to the desired number of policies
+        num_policies = min(num_policies, len(combinations))
+        selected_combinations = combinations[:num_policies]
+
+        # Iterate over the selected combinations
+        for combo in selected_combinations:
+            encryption_state, replication_factor, compression_state, inline_compression, \
+            = combo
+            if compression_state == 'DISABLE':
+                inline_compression_values = False
+
+            # Create the payload dictionary for the combination
+            payload = {
+                "spec": {
+                    "name": pol_name,
+                    "resources": {
+                        "encryption": {
+                            "state": encryption_state
+                        },
+                        "fault_tolerance": {
+                            "replication_factor": replication_factor
+                        },
+                        "compression": {
+                            "state": compression_state,
+                            "inline_compression": inline_compression
+                        },
+                        "filter_list": [
+                            {
+                                "entity_filter_expression_list": [
+                                    {
+                                        "operator": "IN",
+                                        "right_hand_side": {
+                                            "collection": "ALL"
+                                        },
+                                        "left_hand_side": {
+                                            "entity_type": entity_type
+                                        }
+                                    }
+                                ],
+                                "scope_filter_expression_list": [
+                                    {
+                                        "operator": "IN",
+                                        "right_hand_side": {
+                                            "categories": {
+                                                category_name: [
+                                                    value
+                                                ]
+                                            }
+                                        },
+                                        "left_hand_side": "CATEGORY"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "description": "This is a test storage policy"
+                },
+                "metadata": {
+                    "kind": "storage_policy"
+                }
+            }
+
+            # Convert payload dictionary to JSON string
+            payload_json = json.dumps(payload)
+            #print(payload_json)
+            payload_list.append(payload) 
+            #print()
+        return payload_list
+            
+#get_vm_details(self, vm_uuid, payload=None):
+        #api_endpoint = f"https://{self.pc_ip}:9440/api/nutanix/v3/vms/{vm_uuid}"
+        #print (api_endpoint)
+        #return self._make_request(api_endpoint, method='POST')
+

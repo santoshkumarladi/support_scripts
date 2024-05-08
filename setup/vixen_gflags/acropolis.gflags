@@ -1,0 +1,3 @@
+--log_generate_coredump_on_failure=false
+--enable_binary_logging=false
+--binary_logging_enabled=false

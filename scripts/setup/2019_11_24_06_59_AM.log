@@ -1,0 +1,1379 @@
+[    0.000000] Initializing cgroup subsys cpuset
+[    0.000000] Initializing cgroup subsys cpu
+[    0.000000] Initializing cgroup subsys cpuacct
+[    0.000000] Linux version 3.10.0-862.3.2.el7.x86_64 (builder@kbuilder.dev.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-28) (GCC) ) #1 SMP Mon May 21 23:36:36 UTC 2018
+[    0.000000] Command line: BOOT_IMAGE=/boot/vmlinuz-3.10.0-862.3.2.el7.x86_64 root=UUID=8c1540fa-e2b4-407d-bcd1-59848a73e463 ro console=tty0 console=ttyS0,115200n8 crashkernel=auto console=ttyS0,115200 LANG=en_US.UTF-8
+[    0.000000] e820: BIOS-provided physical RAM map:
+[    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
+[    0.000000] BIOS-e820: [mem 0x000000000009fc00-0x000000000009ffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000000f0000-0x00000000000fffff] reserved
+[    0.000000] BIOS-e820: [mem 0x0000000000100000-0x00000000bffd8fff] usable
+[    0.000000] BIOS-e820: [mem 0x00000000bffd9000-0x00000000bfffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000feffc000-0x00000000feffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000fffc0000-0x00000000ffffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x0000000100000000-0x000000023fffffff] usable
+[    0.000000] NX (Execute Disable) protection: active
+[    0.000000] SMBIOS 2.8 present.
+[    0.000000] DMI: Nutanix AHV, BIOS 1.9.1-5.el6 04/01/2014
+[    0.000000] Hypervisor detected: KVM
+[    0.000000] e820: update [mem 0x00000000-0x00000fff] usable ==> reserved
+[    0.000000] e820: remove [mem 0x000a0000-0x000fffff] usable
+[    0.000000] AGP: No AGP bridge found
+[    0.000000] e820: last_pfn = 0x240000 max_arch_pfn = 0x400000000
+[    0.000000] MTRR default type: write-back
+[    0.000000] MTRR fixed ranges enabled:
+[    0.000000]   00000-9FFFF write-back
+[    0.000000]   A0000-BFFFF uncachable
+[    0.000000]   C0000-FFFFF write-protect
+[    0.000000] MTRR variable ranges enabled:
+[    0.000000]   0 base 0000C0000000 mask 3FFFC0000000 uncachable
+[    0.000000]   1 disabled
+[    0.000000]   2 disabled
+[    0.000000]   3 disabled
+[    0.000000]   4 disabled
+[    0.000000]   5 disabled
+[    0.000000]   6 disabled
+[    0.000000]   7 disabled
+[    0.000000] PAT configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- UC  
+[    0.000000] e820: last_pfn = 0xbffd9 max_arch_pfn = 0x400000000
+[    0.000000] Base memory trampoline at [ffff9e3080099000] 99000 size 24576
+[    0.000000] Using GB pages for direct mapping
+[    0.000000] BRK [0x10802e000, 0x10802efff] PGTABLE
+[    0.000000] BRK [0x10802f000, 0x10802ffff] PGTABLE
+[    0.000000] BRK [0x108030000, 0x108030fff] PGTABLE
+[    0.000000] BRK [0x108031000, 0x108031fff] PGTABLE
+[    0.000000] BRK [0x108032000, 0x108032fff] PGTABLE
+[    0.000000] BRK [0x108033000, 0x108033fff] PGTABLE
+[    0.000000] RAMDISK: [mem 0x32e45000-0x3571afff]
+[    0.000000] Early table checksum verification disabled
+[    0.000000] ACPI: RSDP 00000000000f7560 00014 (v00 BOCHS )
+[    0.000000] ACPI: RSDT 00000000bffe88c6 00030 (v01 BOCHS  BXPCRSDT 00000001 BXPC 00000001)
+[    0.000000] ACPI: FACP 00000000bffe7092 00074 (v01 BOCHS  BXPCFACP 00000001 BXPC 00000001)
+[    0.000000] ACPI: DSDT 00000000bffdfd00 07392 (v01 BOCHS  BXPCDSDT 00000001 BXPC 00000001)
+[    0.000000] ACPI: FACS 00000000bffdfcc0 00040
+[    0.000000] ACPI: APIC 00000000bffe7106 007F0 (v01 BOCHS  BXPCAPIC 00000001 BXPC 00000001)
+[    0.000000] ACPI: SRAT 00000000bffe78f6 00FD0 (v01 BOCHS  BXPCSRAT 00000001 BXPC 00000001)
+[    0.000000] ACPI: Local APIC address 0xfee00000
+[    0.000000] SRAT: PXM 0 -> APIC 0x00 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x01 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x02 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x03 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x04 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x05 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x06 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x07 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x08 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x09 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x0a -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x0b -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x0c -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x0d -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x0e -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x0f -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x10 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x11 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x12 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x13 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x14 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x15 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x16 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x17 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x18 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x19 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x1a -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x1b -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x1c -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x1d -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x1e -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x1f -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x20 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x21 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x22 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x23 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x24 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x25 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x26 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x27 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x28 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x29 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x2a -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x2b -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x2c -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x2d -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x2e -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x2f -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x30 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x31 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x32 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x33 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x34 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x35 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x36 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x37 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x38 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x39 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x3a -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x3b -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x3c -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x3d -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x3e -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x3f -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x40 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x41 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x42 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x43 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x44 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x45 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x46 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x47 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x48 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x49 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x4a -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x4b -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x4c -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x4d -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x4e -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x4f -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x50 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x51 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x52 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x53 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x54 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x55 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x56 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x57 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x58 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x59 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x5a -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x5b -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x5c -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x5d -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x5e -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x5f -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x60 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x61 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x62 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x63 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x64 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x65 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x66 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x67 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x68 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x69 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x6a -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x6b -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x6c -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x6d -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x6e -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x6f -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x70 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x71 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x72 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x73 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x74 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x75 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x76 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x77 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x78 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x79 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x7a -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x7b -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x7c -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x7d -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x7e -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x7f -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x80 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x81 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x82 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x83 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x84 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x85 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x86 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x87 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x88 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x89 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x8a -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x8b -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x8c -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x8d -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x8e -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x8f -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x90 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x91 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x92 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x93 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x94 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x95 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x96 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x97 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x98 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x99 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x9a -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x9b -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x9c -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x9d -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x9e -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0x9f -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xa0 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xa1 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xa2 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xa3 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xa4 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xa5 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xa6 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xa7 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xa8 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xa9 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xaa -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xab -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xac -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xad -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xae -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xaf -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xb0 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xb1 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xb2 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xb3 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xb4 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xb5 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xb6 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xb7 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xb8 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xb9 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xba -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xbb -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xbc -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xbd -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xbe -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xbf -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xc0 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xc1 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xc2 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xc3 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xc4 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xc5 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xc6 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xc7 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xc8 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xc9 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xca -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xcb -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xcc -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xcd -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xce -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xcf -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xd0 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xd1 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xd2 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xd3 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xd4 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xd5 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xd6 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xd7 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xd8 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xd9 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xda -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xdb -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xdc -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xdd -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xde -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xdf -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xe0 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xe1 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xe2 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xe3 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xe4 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xe5 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xe6 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xe7 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xe8 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xe9 -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xea -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xeb -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xec -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xed -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xee -> Node 0
+[    0.000000] SRAT: PXM 0 -> APIC 0xef -> Node 0
+[    0.000000] SRAT: Node 0 PXM 0 [mem 0x00000000-0x0009ffff]
+[    0.000000] SRAT: Node 0 PXM 0 [mem 0x00100000-0xbfffffff]
+[    0.000000] SRAT: Node 0 PXM 0 [mem 0x100000000-0x23fffffff]
+[    0.000000] SRAT: Node 0 PXM 0 [mem 0x240000000-0x443fffffff] hotplug
+[    0.000000] NUMA: Node 0 [mem 0x00000000-0x0009ffff] + [mem 0x00100000-0xbfffffff] -> [mem 0x00000000-0xbfffffff]
+[    0.000000] NUMA: Node 0 [mem 0x00000000-0xbfffffff] + [mem 0x100000000-0x23fffffff] -> [mem 0x00000000-0x23fffffff]
+[    0.000000] NODE_DATA(0) allocated [mem 0x23ffd9000-0x23fffffff]
+[    0.000000] Reserving 161MB of memory at 640MB for crashkernel (System RAM: 8191MB)
+[    0.000000] kvm-clock: Using msrs 4b564d01 and 4b564d00
+[    0.000000] kvm-clock: cpu 0, msr 2:3ff89001, primary cpu clock
+[    0.000000] kvm-clock: using sched offset of 3855586913 cycles
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x00001000-0x00ffffff]
+[    0.000000]   DMA32    [mem 0x01000000-0xffffffff]
+[    0.000000]   Normal   [mem 0x100000000-0x23fffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x00001000-0x0009efff]
+[    0.000000]   node   0: [mem 0x00100000-0xbffd8fff]
+[    0.000000]   node   0: [mem 0x100000000-0x23fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x00001000-0x23fffffff]
+[    0.000000] On node 0 totalpages: 2097015
+[    0.000000]   DMA zone: 64 pages used for memmap
+[    0.000000]   DMA zone: 21 pages reserved
+[    0.000000]   DMA zone: 3998 pages, LIFO batch:0
+[    0.000000]   DMA32 zone: 12224 pages used for memmap
+[    0.000000]   DMA32 zone: 782297 pages, LIFO batch:31
+[    0.000000]   Normal zone: 20480 pages used for memmap
+[    0.000000]   Normal zone: 1310720 pages, LIFO batch:31
+[    0.000000] ACPI: PM-Timer IO Port: 0x608
+[    0.000000] ACPI: Local APIC address 0xfee00000
+[    0.000000] ACPI: LAPIC (acpi_id[0x00] lapic_id[0x00] enabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x01] lapic_id[0x01] enabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x02] lapic_id[0x02] enabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x03] lapic_id[0x03] enabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x04] lapic_id[0x04] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x05] lapic_id[0x05] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x06] lapic_id[0x06] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x07] lapic_id[0x07] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x08] lapic_id[0x08] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x09] lapic_id[0x09] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x0a] lapic_id[0x0a] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x0b] lapic_id[0x0b] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x0c] lapic_id[0x0c] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x0d] lapic_id[0x0d] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x0e] lapic_id[0x0e] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x0f] lapic_id[0x0f] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x10] lapic_id[0x10] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x11] lapic_id[0x11] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x12] lapic_id[0x12] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x13] lapic_id[0x13] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x14] lapic_id[0x14] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x15] lapic_id[0x15] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x16] lapic_id[0x16] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x17] lapic_id[0x17] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x18] lapic_id[0x18] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x19] lapic_id[0x19] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x1a] lapic_id[0x1a] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x1b] lapic_id[0x1b] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x1c] lapic_id[0x1c] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x1d] lapic_id[0x1d] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x1e] lapic_id[0x1e] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x1f] lapic_id[0x1f] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x20] lapic_id[0x20] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x21] lapic_id[0x21] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x22] lapic_id[0x22] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x23] lapic_id[0x23] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x24] lapic_id[0x24] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x25] lapic_id[0x25] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x26] lapic_id[0x26] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x27] lapic_id[0x27] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x28] lapic_id[0x28] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x29] lapic_id[0x29] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x2a] lapic_id[0x2a] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x2b] lapic_id[0x2b] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x2c] lapic_id[0x2c] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x2d] lapic_id[0x2d] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x2e] lapic_id[0x2e] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x2f] lapic_id[0x2f] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x30] lapic_id[0x30] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x31] lapic_id[0x31] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x32] lapic_id[0x32] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x33] lapic_id[0x33] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x34] lapic_id[0x34] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x35] lapic_id[0x35] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x36] lapic_id[0x36] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x37] lapic_id[0x37] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x38] lapic_id[0x38] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x39] lapic_id[0x39] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x3a] lapic_id[0x3a] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x3b] lapic_id[0x3b] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x3c] lapic_id[0x3c] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x3d] lapic_id[0x3d] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x3e] lapic_id[0x3e] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x3f] lapic_id[0x3f] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x40] lapic_id[0x40] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x41] lapic_id[0x41] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x42] lapic_id[0x42] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x43] lapic_id[0x43] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x44] lapic_id[0x44] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x45] lapic_id[0x45] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x46] lapic_id[0x46] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x47] lapic_id[0x47] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x48] lapic_id[0x48] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x49] lapic_id[0x49] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x4a] lapic_id[0x4a] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x4b] lapic_id[0x4b] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x4c] lapic_id[0x4c] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x4d] lapic_id[0x4d] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x4e] lapic_id[0x4e] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x4f] lapic_id[0x4f] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x50] lapic_id[0x50] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x51] lapic_id[0x51] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x52] lapic_id[0x52] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x53] lapic_id[0x53] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x54] lapic_id[0x54] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x55] lapic_id[0x55] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x56] lapic_id[0x56] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x57] lapic_id[0x57] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x58] lapic_id[0x58] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x59] lapic_id[0x59] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x5a] lapic_id[0x5a] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x5b] lapic_id[0x5b] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x5c] lapic_id[0x5c] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x5d] lapic_id[0x5d] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x5e] lapic_id[0x5e] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x5f] lapic_id[0x5f] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x60] lapic_id[0x60] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x61] lapic_id[0x61] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x62] lapic_id[0x62] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x63] lapic_id[0x63] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x64] lapic_id[0x64] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x65] lapic_id[0x65] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x66] lapic_id[0x66] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x67] lapic_id[0x67] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x68] lapic_id[0x68] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x69] lapic_id[0x69] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x6a] lapic_id[0x6a] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x6b] lapic_id[0x6b] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x6c] lapic_id[0x6c] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x6d] lapic_id[0x6d] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x6e] lapic_id[0x6e] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x6f] lapic_id[0x6f] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x70] lapic_id[0x70] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x71] lapic_id[0x71] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x72] lapic_id[0x72] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x73] lapic_id[0x73] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x74] lapic_id[0x74] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x75] lapic_id[0x75] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x76] lapic_id[0x76] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x77] lapic_id[0x77] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x78] lapic_id[0x78] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x79] lapic_id[0x79] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x7a] lapic_id[0x7a] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x7b] lapic_id[0x7b] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x7c] lapic_id[0x7c] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x7d] lapic_id[0x7d] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x7e] lapic_id[0x7e] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x7f] lapic_id[0x7f] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x80] lapic_id[0x80] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x81] lapic_id[0x81] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x82] lapic_id[0x82] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x83] lapic_id[0x83] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x84] lapic_id[0x84] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x85] lapic_id[0x85] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x86] lapic_id[0x86] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x87] lapic_id[0x87] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x88] lapic_id[0x88] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x89] lapic_id[0x89] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x8a] lapic_id[0x8a] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x8b] lapic_id[0x8b] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x8c] lapic_id[0x8c] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x8d] lapic_id[0x8d] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x8e] lapic_id[0x8e] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x8f] lapic_id[0x8f] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x90] lapic_id[0x90] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x91] lapic_id[0x91] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x92] lapic_id[0x92] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x93] lapic_id[0x93] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x94] lapic_id[0x94] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x95] lapic_id[0x95] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x96] lapic_id[0x96] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x97] lapic_id[0x97] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x98] lapic_id[0x98] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x99] lapic_id[0x99] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x9a] lapic_id[0x9a] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x9b] lapic_id[0x9b] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x9c] lapic_id[0x9c] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x9d] lapic_id[0x9d] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x9e] lapic_id[0x9e] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x9f] lapic_id[0x9f] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xa0] lapic_id[0xa0] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xa1] lapic_id[0xa1] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xa2] lapic_id[0xa2] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xa3] lapic_id[0xa3] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xa4] lapic_id[0xa4] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xa5] lapic_id[0xa5] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xa6] lapic_id[0xa6] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xa7] lapic_id[0xa7] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xa8] lapic_id[0xa8] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xa9] lapic_id[0xa9] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xaa] lapic_id[0xaa] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xab] lapic_id[0xab] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xac] lapic_id[0xac] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xad] lapic_id[0xad] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xae] lapic_id[0xae] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xaf] lapic_id[0xaf] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xb0] lapic_id[0xb0] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xb1] lapic_id[0xb1] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xb2] lapic_id[0xb2] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xb3] lapic_id[0xb3] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xb4] lapic_id[0xb4] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xb5] lapic_id[0xb5] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xb6] lapic_id[0xb6] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xb7] lapic_id[0xb7] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xb8] lapic_id[0xb8] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xb9] lapic_id[0xb9] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xba] lapic_id[0xba] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xbb] lapic_id[0xbb] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xbc] lapic_id[0xbc] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xbd] lapic_id[0xbd] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xbe] lapic_id[0xbe] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xbf] lapic_id[0xbf] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xc0] lapic_id[0xc0] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xc1] lapic_id[0xc1] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xc2] lapic_id[0xc2] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xc3] lapic_id[0xc3] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xc4] lapic_id[0xc4] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xc5] lapic_id[0xc5] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xc6] lapic_id[0xc6] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xc7] lapic_id[0xc7] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xc8] lapic_id[0xc8] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xc9] lapic_id[0xc9] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xca] lapic_id[0xca] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xcb] lapic_id[0xcb] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xcc] lapic_id[0xcc] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xcd] lapic_id[0xcd] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xce] lapic_id[0xce] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xcf] lapic_id[0xcf] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xd0] lapic_id[0xd0] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xd1] lapic_id[0xd1] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xd2] lapic_id[0xd2] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xd3] lapic_id[0xd3] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xd4] lapic_id[0xd4] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xd5] lapic_id[0xd5] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xd6] lapic_id[0xd6] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xd7] lapic_id[0xd7] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xd8] lapic_id[0xd8] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xd9] lapic_id[0xd9] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xda] lapic_id[0xda] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xdb] lapic_id[0xdb] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xdc] lapic_id[0xdc] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xdd] lapic_id[0xdd] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xde] lapic_id[0xde] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xdf] lapic_id[0xdf] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xe0] lapic_id[0xe0] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xe1] lapic_id[0xe1] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xe2] lapic_id[0xe2] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xe3] lapic_id[0xe3] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xe4] lapic_id[0xe4] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xe5] lapic_id[0xe5] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xe6] lapic_id[0xe6] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xe7] lapic_id[0xe7] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xe8] lapic_id[0xe8] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xe9] lapic_id[0xe9] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xea] lapic_id[0xea] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xeb] lapic_id[0xeb] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xec] lapic_id[0xec] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xed] lapic_id[0xed] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xee] lapic_id[0xee] disabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0xef] lapic_id[0xef] disabled)
+[    0.000000] ACPI: LAPIC_NMI (acpi_id[0xff] dfl dfl lint[0x1])
+[    0.000000] ACPI: IOAPIC (id[0x00] address[0xfec00000] gsi_base[0])
+[    0.000000] IOAPIC[0]: apic_id 0, version 17, address 0xfec00000, GSI 0-23
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 5 global_irq 5 high level)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 10 global_irq 10 high level)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 11 global_irq 11 high level)
+[    0.000000] ACPI: IRQ0 used by override.
+[    0.000000] ACPI: IRQ5 used by override.
+[    0.000000] ACPI: IRQ9 used by override.
+[    0.000000] ACPI: IRQ10 used by override.
+[    0.000000] ACPI: IRQ11 used by override.
+[    0.000000] Using ACPI (MADT) for SMP configuration information
+[    0.000000] smpboot: Allowing 240 CPUs, 236 hotplug CPUs
+[    0.000000] PM: Registered nosave memory: [mem 0x0009f000-0x0009ffff]
+[    0.000000] PM: Registered nosave memory: [mem 0x000a0000-0x000effff]
+[    0.000000] PM: Registered nosave memory: [mem 0x000f0000-0x000fffff]
+[    0.000000] PM: Registered nosave memory: [mem 0xbffd9000-0xbfffffff]
+[    0.000000] PM: Registered nosave memory: [mem 0xc0000000-0xfeffbfff]
+[    0.000000] PM: Registered nosave memory: [mem 0xfeffc000-0xfeffffff]
+[    0.000000] PM: Registered nosave memory: [mem 0xff000000-0xfffbffff]
+[    0.000000] PM: Registered nosave memory: [mem 0xfffc0000-0xffffffff]
+[    0.000000] e820: [mem 0xc0000000-0xfeffbfff] available for PCI devices
+[    0.000000] Booting paravirtualized kernel on KVM
+[    0.000000] setup_percpu: NR_CPUS:5120 nr_cpumask_bits:240 nr_cpu_ids:240 nr_node_ids:1
+[    0.000000] PERCPU: Embedded 35 pages/cpu @ffff9e32b3a00000 s104856 r8192 d30312 u262144
+[    0.000000] pcpu-alloc: s104856 r8192 d30312 u262144 alloc=1*2097152
+[    0.000000] pcpu-alloc: [0] 000 001 002 003 004 005 006 007 
+[    0.000000] pcpu-alloc: [0] 008 009 010 011 012 013 014 015 
+[    0.000000] pcpu-alloc: [0] 016 017 018 019 020 021 022 023 
+[    0.000000] pcpu-alloc: [0] 024 025 026 027 028 029 030 031 
+[    0.000000] pcpu-alloc: [0] 032 033 034 035 036 037 038 039 
+[    0.000000] pcpu-alloc: [0] 040 041 042 043 044 045 046 047 
+[    0.000000] pcpu-alloc: [0] 048 049 050 051 052 053 054 055 
+[    0.000000] pcpu-alloc: [0] 056 057 058 059 060 061 062 063 
+[    0.000000] pcpu-alloc: [0] 064 065 066 067 068 069 070 071 
+[    0.000000] pcpu-alloc: [0] 072 073 074 075 076 077 078 079 
+[    0.000000] pcpu-alloc: [0] 080 081 082 083 084 085 086 087 
+[    0.000000] pcpu-alloc: [0] 088 089 090 091 092 093 094 095 
+[    0.000000] pcpu-alloc: [0] 096 097 098 099 100 101 102 103 
+[    0.000000] pcpu-alloc: [0] 104 105 106 107 108 109 110 111 
+[    0.000000] pcpu-alloc: [0] 112 113 114 115 116 117 118 119 
+[    0.000000] pcpu-alloc: [0] 120 121 122 123 124 125 126 127 
+[    0.000000] pcpu-alloc: [0] 128 129 130 131 132 133 134 135 
+[    0.000000] pcpu-alloc: [0] 136 137 138 139 140 141 142 143 
+[    0.000000] pcpu-alloc: [0] 144 145 146 147 148 149 150 151 
+[    0.000000] pcpu-alloc: [0] 152 153 154 155 156 157 158 159 
+[    0.000000] pcpu-alloc: [0] 160 161 162 163 164 165 166 167 
+[    0.000000] pcpu-alloc: [0] 168 169 170 171 172 173 174 175 
+[    0.000000] pcpu-alloc: [0] 176 177 178 179 180 181 182 183 
+[    0.000000] pcpu-alloc: [0] 184 185 186 187 188 189 190 191 
+[    0.000000] pcpu-alloc: [0] 192 193 194 195 196 197 198 199 
+[    0.000000] pcpu-alloc: [0] 200 201 202 203 204 205 206 207 
+[    0.000000] pcpu-alloc: [0] 208 209 210 211 212 213 214 215 
+[    0.000000] pcpu-alloc: [0] 216 217 218 219 220 221 222 223 
+[    0.000000] pcpu-alloc: [0] 224 225 226 227 228 229 230 231 
+[    0.000000] pcpu-alloc: [0] 232 233 234 235 236 237 238 239 
+[    0.000000] KVM setup async PF for cpu 0
+[    0.000000] kvm-stealtime: cpu 0, msr 233a134c0
+[    0.000000] PV qspinlock hash table entries: 512 (order: 1, 8192 bytes)
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 2064226
+[    0.000000] Policy zone: Normal
+[    0.000000] Kernel command line: BOOT_IMAGE=/boot/vmlinuz-3.10.0-862.3.2.el7.x86_64 root=UUID=8c1540fa-e2b4-407d-bcd1-59848a73e463 ro console=tty0 console=ttyS0,115200n8 crashkernel=auto console=ttyS0,115200 LANG=en_US.UTF-8
+[    0.000000] PID hash table entries: 4096 (order: 3, 32768 bytes)
+[    0.000000] x86/fpu: xstate_offset[2]: 0240, xstate_sizes[2]: 0100
+[    0.000000] x86/fpu: xstate_offset[3]: 03c0, xstate_sizes[3]: 0040
+[    0.000000] x86/fpu: xstate_offset[4]: 0400, xstate_sizes[4]: 0040
+[    0.000000] x86/fpu: xstate_offset[5]: 0440, xstate_sizes[5]: 0040
+[    0.000000] x86/fpu: xstate_offset[6]: 0480, xstate_sizes[6]: 0200
+[    0.000000] x86/fpu: xstate_offset[7]: 0680, xstate_sizes[7]: 0400
+[    0.000000] xsave: enabled xstate_bv 0xff, cntxt size 0xa80 using standard form
+[    0.000000] AGP: Checking aperture...
+[    0.000000] AGP: No AGP bridge found
+[    0.000000] Memory: 4951336k/9437184k available (7328k kernel code, 1049124k absent, 456896k reserved, 6301k data, 1832k init)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=240, Nodes=1
+[    0.000000] x86/pti: Unmapping kernel while in userspace
+[    0.000000] Hierarchical RCU implementation.
+[    0.000000] 	RCU restricting CPUs from NR_CPUS=5120 to nr_cpu_ids=240.
+[    0.000000] NR_IRQS:327936 nr_irqs:2344 0
+[    0.000000] Console: colour VGA+ 80x25
+[    0.000000] console [tty0] enabled
+[    0.000000] console [ttyS0] enabled
+[    0.000000] allocated 33554432 bytes of page_cgroup
+[    0.000000] please try 'cgroup_disable=memory' option if you don't want memory cgroups
+[    0.000000] tsc: Detected 2199.998 MHz processor
+[    2.022897] Calibrating delay loop (skipped) preset value.. 4399.99 BogoMIPS (lpj=2199998)
+[    2.026031] pid_max: default: 245760 minimum: 1920
+[    2.028530] Security Framework initialized
+[    2.030092] SELinux:  Initializing.
+[    2.031638] SELinux:  Starting in permissive mode
+[    2.031639] Yama: becoming mindful.
+[    2.033828] Dentry cache hash table entries: 1048576 (order: 11, 8388608 bytes)
+[    2.038315] Inode-cache hash table entries: 524288 (order: 10, 4194304 bytes)
+[    2.041146] Mount-cache hash table entries: 16384 (order: 5, 131072 bytes)
+[    2.043169] Mountpoint-cache hash table entries: 16384 (order: 5, 131072 bytes)
+[    2.047705] Initializing cgroup subsys memory
+[    2.049359] Initializing cgroup subsys devices
+[    2.050971] Initializing cgroup subsys freezer
+[    2.052579] Initializing cgroup subsys net_cls
+[    2.054185] Initializing cgroup subsys blkio
+[    2.055769] Initializing cgroup subsys perf_event
+[    2.057457] Initializing cgroup subsys hugetlb
+[    2.059060] Initializing cgroup subsys pids
+[    2.060625] Initializing cgroup subsys net_prio
+[    2.063693] mce: CPU supports 10 MCE banks
+[    2.065300] Last level iTLB entries: 4KB 0, 2MB 0, 4MB 0
+[    2.067058] Last level dTLB entries: 4KB 0, 2MB 0, 4MB 0
+[    2.068802] tlb_flushall_shift: 6
+[    2.070269] Speculative Store Bypass: Mitigation: Speculative Store Bypass disabled via prctl
+[    2.073488] FEATURE SPEC_CTRL Present
+[    2.074974] FEATURE IBPB_SUPPORT Present
+[    2.076825] Spectre V2 : Mitigation: Full retpoline
+[    2.080716] Freeing SMP alternatives: 24k freed
+[    2.091065] ACPI: Core revision 20130517
+[    2.096502] ACPI: All ACPI Tables successfully acquired
+[    2.098540] ftrace: allocating 28055 entries in 110 pages
+[    2.152273] Enabling x2apic
+[    2.153663] Enabled x2apic
+[    2.155381] Switched APIC routing to physical x2apic.
+[    2.159055] ..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+[    2.160907] smpboot: CPU0: Intel(R) Xeon(R) Gold 5120 CPU @ 2.20GHz (fam: 0f, model: 06, stepping: 01)
+[    2.164479] TSC deadline timer enabled
+[    2.164519] Performance Events: unsupported Netburst CPU model 6 no PMU driver, software events only.
+[    2.168015] KVM setup paravirtual spinlock
+[    2.186885] kvm-clock: cpu 1, msr 2:3ff89041, secondary cpu clock
+[    2.209417] KVM setup async PF for cpu 1
+[    2.211905] kvm-stealtime: cpu 1, msr 233a534c0
+[    2.220611] kvm-clock: cpu 2, msr 2:3ff89081, secondary cpu clock
+[    2.243134] KVM setup async PF for cpu 2
+[    2.244840] kvm-stealtime: cpu 2, msr 233a934c0
+[    2.254328] kvm-clock: cpu 3, msr 2:3ff890c1, secondary cpu clock
+[    2.174738] smpboot: Booting Node   0, Processors  #1 #2 #3
+[    2.276851] Brought up 4 CPUs
+[    2.276861] KVM setup async PF for cpu 3
+[    2.276867] kvm-stealtime: cpu 3, msr 233ad34c0
+[    2.282337] smpboot: Max logical packages: 240
+[    2.283947] smpboot: Total of 4 processors activated (17599.98 BogoMIPS)
+[    2.302377] node 0 initialised, 744953 pages in 15ms
+[    2.305001] devtmpfs: initialized
+[    2.311161] EVM: security.selinux
+[    2.312980] EVM: security.ima
+[    2.314702] EVM: security.capability
+[    2.319141] atomic64 test passed for x86-64 platform with CX8 and with SSE
+[    2.321599] pinctrl core: initialized pinctrl subsystem
+[    2.324022] RTC time: 23:47:20, date: 08/25/19
+[    2.326396] NET: Registered protocol family 16
+[    2.328924] ACPI: bus type PCI registered
+[    2.330800] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+[    2.333706] PCI: Using configuration type 1 for base access
+[    2.342327] ACPI: Added _OSI(Module Device)
+[    2.344310] ACPI: Added _OSI(Processor Device)
+[    2.346312] ACPI: Added _OSI(3.0 _SCP Extensions)
+[    2.348387] ACPI: Added _OSI(Processor Aggregator Device)
+[    2.352480] ACPI: EC: Look up EC in DSDT
+[    2.363430] ACPI: Interpreter enabled
+[    2.365319] ACPI: (supports S0 S5)
+[    2.367794] ACPI: Using IOAPIC for interrupt routing
+[    2.369557] PCI: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
+[    2.372829] ACPI: Enabled 3 GPEs in block 00 to 0F
+[    2.399714] ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-ff])
+[    2.401632] acpi PNP0A03:00: _OSC: OS supports [ASPM ClockPM Segments MSI]
+[    2.403642] acpi PNP0A03:00: _OSC failed (AE_NOT_FOUND); disabling ASPM
+[    2.405621] acpi PNP0A03:00: fail to add MMCONFIG information, can't access extended PCI configuration space under this bridge.
+[    2.409413] acpiphp: Slot [3] registered
+[    2.410965] acpiphp: Slot [4] registered
+[    2.412514] acpiphp: Slot [5] registered
+[    2.414071] acpiphp: Slot [7] registered
+[    2.415616] acpiphp: Slot [8] registered
+[    2.417157] acpiphp: Slot [9] registered
+[    2.418707] acpiphp: Slot [10] registered
+[    2.439300] acpiphp: Slot [11] registered
+[    2.440863] acpiphp: Slot [12] registered
+[    2.442434] acpiphp: Slot [13] registered
+[    2.443992] acpiphp: Slot [14] registered
+[    2.445555] acpiphp: Slot [15] registered
+[    2.447110] acpiphp: Slot [16] registered
+[    2.448673] acpiphp: Slot [17] registered
+[    2.450228] acpiphp: Slot [18] registered
+[    2.451796] acpiphp: Slot [19] registered
+[    2.453348] acpiphp: Slot [20] registered
+[    2.454857] acpiphp: Slot [21] registered
+[    2.456447] acpiphp: Slot [22] registered
+[    2.457950] acpiphp: Slot [23] registered
+[    2.459519] acpiphp: Slot [24] registered
+[    2.461077] acpiphp: Slot [25] registered
+[    2.462639] acpiphp: Slot [26] registered
+[    2.464197] acpiphp: Slot [27] registered
+[    2.465773] acpiphp: Slot [28] registered
+[    2.467346] acpiphp: Slot [29] registered
+[    2.468914] acpiphp: Slot [30] registered
+[    2.470475] acpiphp: Slot [31] registered
+[    2.472026] PCI host bridge to bus 0000:00
+[    2.473582] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    2.475355] pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7 window]
+[    2.477344] pci_bus 0000:00: root bus resource [io  0x0d00-0xffff window]
+[    2.479336] pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff window]
+[    2.482212] pci_bus 0000:00: root bus resource [mem 0xc0000000-0xfebfffff window]
+[    2.485131] pci 0000:00:00.0: [8086:1237] type 00 class 0x060000
+[    2.485652] pci 0000:00:01.0: [8086:7000] type 00 class 0x060100
+[    2.486365] pci 0000:00:01.1: [8086:7010] type 00 class 0x010180
+[    2.496317] pci 0000:00:01.1: reg 0x20: [io  0xc0e0-0xc0ef]
+[    2.502229] pci 0000:00:01.1: legacy IDE quirk: reg 0x10: [io  0x01f0-0x01f7]
+[    2.504327] pci 0000:00:01.1: legacy IDE quirk: reg 0x14: [io  0x03f6]
+[    2.506266] pci 0000:00:01.1: legacy IDE quirk: reg 0x18: [io  0x0170-0x0177]
+[    2.508299] pci 0000:00:01.1: legacy IDE quirk: reg 0x1c: [io  0x0376]
+[    2.510941] pci 0000:00:01.3: [8086:7113] type 00 class 0x068000
+[    2.511500] pci 0000:00:01.3: quirk: [io  0x0600-0x063f] claimed by PIIX4 ACPI
+[    2.514337] pci 0000:00:01.3: quirk: [io  0x0700-0x070f] claimed by PIIX4 SMB
+[    2.516657] pci 0000:00:02.0: [1234:1111] type 00 class 0x030000
+[    2.520249] pci 0000:00:02.0: reg 0x10: [mem 0xfd000000-0xfdffffff pref]
+[    2.527855] pci 0000:00:02.0: reg 0x18: [mem 0xfebd0000-0xfebd0fff]
+[    2.546085] pci 0000:00:02.0: reg 0x30: [mem 0xfebc0000-0xfebcffff pref]
+[    2.548625] pci 0000:00:03.0: [1af4:1000] type 00 class 0x020000
+[    2.553325] pci 0000:00:03.0: reg 0x10: [io  0xc040-0xc05f]
+[    2.558792] pci 0000:00:03.0: reg 0x14: [mem 0xfebd1000-0xfebd1fff]
+[    2.584464] pci 0000:00:03.0: reg 0x20: [mem 0xfe000000-0xfe003fff 64bit pref]
+[    2.591304] pci 0000:00:03.0: reg 0x30: [mem 0xfeb80000-0xfebbffff pref]
+[    2.592117] pci 0000:00:04.0: [1af4:1004] type 00 class 0x010000
+[    2.598215] pci 0000:00:04.0: reg 0x10: [io  0xc000-0xc03f]
+[    2.605718] pci 0000:00:04.0: reg 0x14: [mem 0xfebd2000-0xfebd2fff]
+[    2.623965] pci 0000:00:04.0: reg 0x20: [mem 0xfe004000-0xfe007fff 64bit pref]
+[    2.631754] pci 0000:00:05.0: [1af4:1002] type 00 class 0x00ff00
+[    2.635246] pci 0000:00:05.0: reg 0x10: [io  0xc060-0xc07f]
+[    2.651167] pci 0000:00:05.0: reg 0x20: [mem 0xfe008000-0xfe00bfff 64bit pref]
+[    2.656922] pci 0000:00:06.0: [8086:2934] type 00 class 0x0c0300
+[    2.667723] pci 0000:00:06.0: reg 0x20: [io  0xc080-0xc09f]
+[    2.673343] pci 0000:00:06.1: [8086:2935] type 00 class 0x0c0300
+[    2.688592] pci 0000:00:06.1: reg 0x20: [io  0xc0a0-0xc0bf]
+[    2.693945] pci 0000:00:06.2: [8086:2936] type 00 class 0x0c0300
+[    2.709016] pci 0000:00:06.2: reg 0x20: [io  0xc0c0-0xc0df]
+[    2.714972] pci 0000:00:06.7: [8086:293a] type 00 class 0x0c0320
+[    2.716668] pci 0000:00:06.7: reg 0x10: [mem 0xfebd3000-0xfebd3fff]
+[    2.729363] ACPI: PCI Interrupt Link [LNKA] (IRQs 5 *10 11)
+[    2.731922] ACPI: PCI Interrupt Link [LNKB] (IRQs 5 *10 11)
+[    2.735118] ACPI: PCI Interrupt Link [LNKC] (IRQs 5 10 *11)
+[    2.737701] ACPI: PCI Interrupt Link [LNKD] (IRQs 5 10 *11)
+[    2.740300] ACPI: PCI Interrupt Link [LNKS] (IRQs *9)
+[    2.749917] vgaarb: device added: PCI:0000:00:02.0,decodes=io+mem,owns=io+mem,locks=none
+[    2.752957] vgaarb: loaded
+[    2.754273] vgaarb: bridge control possible 0000:00:02.0
+[    2.756272] SCSI subsystem initialized
+[    2.757814] ACPI: bus type USB registered
+[    2.759371] usbcore: registered new interface driver usbfs
+[    2.761159] usbcore: registered new interface driver hub
+[    2.763098] usbcore: registered new device driver usb
+[    2.765225] EDAC MC: Ver: 3.0.0
+[    2.767016] PCI: Using ACPI for IRQ routing
+[    2.768604] PCI: pci_cache_line_size set to 64 bytes
+[    2.768860] e820: reserve RAM buffer [mem 0x0009fc00-0x0009ffff]
+[    2.768862] e820: reserve RAM buffer [mem 0xbffd9000-0xbfffffff]
+[    2.769089] NetLabel: Initializing
+[    2.770552] NetLabel:  domain hash size = 128
+[    2.772178] NetLabel:  protocols = UNLABELED CIPSOv4
+[    2.773899] NetLabel:  unlabeled traffic allowed by default
+[    2.775745] amd_nb: Cannot enumerate AMD northbridges
+[    2.777552] Switched to clocksource kvm-clock
+[    2.786301] pnp: PnP ACPI init
+[    2.787753] ACPI: bus type PNP registered
+[    2.789359] pnp 00:00: Plug and Play ACPI device, IDs PNP0b00 (active)
+[    2.789410] pnp 00:01: Plug and Play ACPI device, IDs PNP0303 (active)
+[    2.789451] pnp 00:02: Plug and Play ACPI device, IDs PNP0f13 (active)
+[    2.789479] pnp 00:03: [dma 2]
+[    2.789494] pnp 00:03: Plug and Play ACPI device, IDs PNP0700 (active)
+[    2.790175] pnp: PnP ACPI: found 4 devices
+[    2.791746] ACPI: bus type PNP unregistered
+[    2.800438] pci_bus 0000:00: resource 4 [io  0x0000-0x0cf7 window]
+[    2.800441] pci_bus 0000:00: resource 5 [io  0x0d00-0xffff window]
+[    2.800443] pci_bus 0000:00: resource 6 [mem 0x000a0000-0x000bffff window]
+[    2.800445] pci_bus 0000:00: resource 7 [mem 0xc0000000-0xfebfffff window]
+[    2.800660] NET: Registered protocol family 2
+[    2.803525] TCP established hash table entries: 65536 (order: 7, 524288 bytes)
+[    2.806574] TCP bind hash table entries: 65536 (order: 8, 1048576 bytes)
+[    2.808750] TCP: Hash tables configured (established 65536 bind 65536)
+[    2.810832] TCP: reno registered
+[    2.812694] UDP hash table entries: 4096 (order: 5, 131072 bytes)
+[    2.815166] UDP-Lite hash table entries: 4096 (order: 5, 131072 bytes)
+[    2.817964] NET: Registered protocol family 1
+[    2.819587] pci 0000:00:00.0: Limiting direct PCI/PCI transfers
+[    2.821451] pci 0000:00:01.0: PIIX3: Enabling Passive Release
+[    2.823291] pci 0000:00:01.0: Activating ISA DMA hang workarounds
+[    2.825207] pci 0000:00:02.0: Boot video device
+[    2.852149] ACPI: PCI Interrupt Link [LNKB] enabled at IRQ 10
+[    2.908645] ACPI: PCI Interrupt Link [LNKC] enabled at IRQ 11
+[    2.965259] ACPI: PCI Interrupt Link [LNKD] enabled at IRQ 11
+[    3.021496] ACPI: PCI Interrupt Link [LNKA] enabled at IRQ 10
+[    3.051180] PCI: CLS 0 bytes, default 64
+[    3.051240] Unpacking initramfs...
+[    3.486399] Freeing initrd memory: 41816k freed
+[    3.503769] PCI-DMA: Using software bounce buffering for IO (SWIOTLB)
+[    3.505707] software IO TLB [mem 0xbbfd9000-0xbffd9000] (64MB) mapped at [ffff9e313bfd9000-ffff9e313ffd8fff]
+[    3.509673] sha1_ssse3: Using AVX2 optimized SHA-1 implementation
+[    3.511620] sha256_ssse3: Using AVX2 optimized SHA-256 implementation
+[    3.516427] futex hash table entries: 65536 (order: 10, 4194304 bytes)
+[    3.518962] Initialise system trusted keyring
+[    3.520687] audit: initializing netlink socket (disabled)
+[    3.522460] type=2000 audit(1566802039.841:1): initialized
+[    3.547797] HugeTLB registered 1 GB page size, pre-allocated 0 pages
+[    3.549745] HugeTLB registered 2 MB page size, pre-allocated 0 pages
+[    3.552964] zpool: loaded
+[    3.554296] zbud: loaded
+[    3.556285] VFS: Disk quotas dquot_6.5.2
+[    3.558097] Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    3.561306] msgmni has been set to 15572
+[    3.563113] Key type big_key registered
+[    3.564627] SELinux:  Registering netfilter hooks
+[    3.565979] NET: Registered protocol family 38
+[    3.567595] Key type asymmetric registered
+[    3.569143] Asymmetric key parser 'x509' registered
+[    3.570929] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 248)
+[    3.574048] io scheduler noop registered
+[    3.575575] io scheduler deadline registered (default)
+[    3.577400] io scheduler cfq registered
+[    3.578913] io scheduler mq-deadline registered
+[    3.580533] io scheduler kyber registered
+[    3.582199] pci_hotplug: PCI Hot Plug PCI Core version: 0.5
+[    3.583989] pciehp: PCI Express Hot Plug Controller Driver version: 0.4
+[    3.586151] input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0
+[    3.589011] ACPI: Power Button [PWRF]
+[    3.590827] GHES: HEST is not enabled!
+[    3.592437] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+[    3.594928] Non-volatile memory driver v1.3
+[    3.596563] Linux agpgart interface v0.103
+[    3.598253] crash memory driver: version 1.1
+[    3.599909] rdac: device handler registered
+[    3.601529] hp_sw: device handler registered
+[    3.603113] emc: device handler registered
+[    3.604918] alua: device handler registered
+[    3.606534] libphy: Fixed MDIO Bus: probed
+[    3.608163] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    3.610109] ehci-pci: EHCI PCI platform driver
+[    3.639347] ehci-pci 0000:00:06.7: EHCI Host Controller
+[    3.641204] ehci-pci 0000:00:06.7: new USB bus registered, assigned bus number 1
+[    3.644352] ehci-pci 0000:00:06.7: irq 10, io mem 0xfebd3000
+[    3.651594] ehci-pci 0000:00:06.7: USB 2.0 started, EHCI 1.00
+[    3.653731] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002
+[    3.655775] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    3.658608] usb usb1: Product: EHCI Host Controller
+[    3.660284] usb usb1: Manufacturer: Linux 3.10.0-862.3.2.el7.x86_64 ehci_hcd
+[    3.662315] usb usb1: SerialNumber: 0000:00:06.7
+[    3.664136] hub 1-0:1.0: USB hub found
+[    3.665654] hub 1-0:1.0: 6 ports detected
+[    3.667402] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    3.669295] ohci-pci: OHCI PCI platform driver
+[    3.670917] uhci_hcd: USB Universal Host Controller Interface driver
+[    3.700740] uhci_hcd 0000:00:06.0: UHCI Host Controller
+[    3.702596] uhci_hcd 0000:00:06.0: new USB bus registered, assigned bus number 2
+[    3.705537] uhci_hcd 0000:00:06.0: detected 2 ports
+[    3.707275] uhci_hcd 0000:00:06.0: irq 10, io base 0x0000c080
+[    3.709187] usb usb2: New USB device found, idVendor=1d6b, idProduct=0001
+[    3.711286] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    3.714141] usb usb2: Product: UHCI Host Controller
+[    3.715864] usb usb2: Manufacturer: Linux 3.10.0-862.3.2.el7.x86_64 uhci_hcd
+[    3.717992] usb usb2: SerialNumber: 0000:00:06.0
+[    3.719852] hub 2-0:1.0: USB hub found
+[    3.721389] hub 2-0:1.0: 2 ports detected
+[    3.751009] uhci_hcd 0000:00:06.1: UHCI Host Controller
+[    3.752880] uhci_hcd 0000:00:06.1: new USB bus registered, assigned bus number 3
+[    3.755810] uhci_hcd 0000:00:06.1: detected 2 ports
+[    3.757640] uhci_hcd 0000:00:06.1: irq 11, io base 0x0000c0a0
+[    3.759588] usb usb3: New USB device found, idVendor=1d6b, idProduct=0001
+[    3.761692] usb usb3: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    3.764552] usb usb3: Product: UHCI Host Controller
+[    3.766235] usb usb3: Manufacturer: Linux 3.10.0-862.3.2.el7.x86_64 uhci_hcd
+[    3.768287] usb usb3: SerialNumber: 0000:00:06.1
+[    3.771192] hub 3-0:1.0: USB hub found
+[    3.772926] hub 3-0:1.0: 2 ports detected
+[    3.804246] uhci_hcd 0000:00:06.2: UHCI Host Controller
+[    3.806788] uhci_hcd 0000:00:06.2: new USB bus registered, assigned bus number 4
+[    3.809815] uhci_hcd 0000:00:06.2: detected 2 ports
+[    3.811585] uhci_hcd 0000:00:06.2: irq 11, io base 0x0000c0c0
+[    3.813567] usb usb4: New USB device found, idVendor=1d6b, idProduct=0001
+[    3.815561] usb usb4: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    3.818389] usb usb4: Product: UHCI Host Controller
+[    3.820090] usb usb4: Manufacturer: Linux 3.10.0-862.3.2.el7.x86_64 uhci_hcd
+[    3.822134] usb usb4: SerialNumber: 0000:00:06.2
+[    3.824022] hub 4-0:1.0: USB hub found
+[    3.825577] hub 4-0:1.0: 2 ports detected
+[    3.827355] usbcore: registered new interface driver usbserial
+[    3.848341] usbcore: registered new interface driver usbserial_generic
+[    3.850314] usbserial: USB Serial support registered for generic
+[    3.852230] i8042: PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
+[    3.856186] serio: i8042 KBD port at 0x60,0x64 irq 1
+[    3.858012] serio: i8042 AUX port at 0x60,0x64 irq 12
+[    3.860035] mousedev: PS/2 mouse device common for all mice
+[    3.862154] rtc_cmos 00:00: RTC can wake from S4
+[    3.862477] input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input1
+[    3.863333] input: VirtualPS/2 VMware VMMouse as /devices/platform/i8042/serio1/input/input2
+[    3.863662] input: VirtualPS/2 VMware VMMouse as /devices/platform/i8042/serio1/input/input3
+[    3.873814] rtc_cmos 00:00: rtc core: registered rtc_cmos as rtc0
+[    3.875989] rtc_cmos 00:00: alarms up to one day, y3k, 114 bytes nvram
+[    3.878021] cpuidle: using governor menu
+[    3.879676] hidraw: raw HID events driver (C) Jiri Kosina
+[    3.881572] usbcore: registered new interface driver usbhid
+[    3.883384] usbhid: USB HID core driver
+[    3.885038] drop_monitor: Initializing network drop monitor service
+[    3.887280] TCP: cubic registered
+[    3.888746] Initializing XFRM netlink socket
+[    3.890877] NET: Registered protocol family 10
+[    3.893735] NET: Registered protocol family 17
+[    3.895368] mpls_gso: MPLS GSO support
+[    3.897165] microcode: CPU0 sig=0xf61, pf=0x1, revision=0x1
+[    3.899082] microcode: CPU1 sig=0xf61, pf=0x1, revision=0x1
+[    3.900958] microcode: CPU2 sig=0xf61, pf=0x1, revision=0x1
+[    3.902797] microcode: CPU3 sig=0xf61, pf=0x1, revision=0x1
+[    3.904716] microcode: Microcode Update Driver: v2.01 <tigran@aivazian.fsnet.co.uk>, Peter Oruba
+[    3.908011] PM: Hibernation image not present or could not be loaded.
+[    3.908015] Loading compiled-in X.509 certificates
+[    3.909736] Loaded X.509 cert 'CentOS Linux kpatch signing key: ea0413152cde1d98ebdca3fe6f0230904c9ef717'
+[    3.912994] Loaded X.509 cert 'CentOS Linux Driver update signing key: 7f421ee0ab69461574bb358861dbe77762a4201b'
+[    3.916743] Loaded X.509 cert 'CentOS Linux kernel signing key: d874541848b921c5e04001f806acd06ceb481c7c'
+[    3.919988] registered taskstats version 1
+[    3.923979] Key type trusted registered
+[    3.927288] Key type encrypted registered
+[    3.929053] IMA: No TPM chip found, activating TPM-bypass! (rc=-19)
+[    3.931667]   Magic number: 15:568:808
+[    3.933286] acpi LNXCPU:8a: hash matches
+[    3.934971] rtc_cmos 00:00: setting system clock to 2019-08-25 23:47:21 UTC (1566776841)
+[    3.938766] Freeing unused kernel memory: 1832k freed
+[    3.941154] Write protecting the kernel read-only data: 12288k
+[    3.944640] Freeing unused kernel memory: 852k freed
+[    3.947840] Freeing unused kernel memory: 680k freed
+[    3.953989] random: systemd: uninitialized urandom read (16 bytes read)
+[    3.956822] random: systemd: uninitialized urandom read (16 bytes read)
+[    3.958823] random: systemd: uninitialized urandom read (16 bytes read)
+[    3.963396] systemd[1]: systemd 219 running in system mode. (+PAM +AUDIT +SELINUX +IMA -APPARMOR +SMACK +SYSVINIT +UTMP +LIBCRYPTSETUP +GCRYPT +GNUTLS +ACL +XZ +LZ4 -SECCOMP +BLKID +ELFUTILS +KMOD +IDN)
+[    3.968752] systemd[1]: Detected virtualization microsoft.
+[    3.970563] systemd[1]: Detected architecture x86-64.
+[    3.972325] systemd[1]: Running in initial RAM disk.
+[    3.972549] usb 1-1: new high-speed USB device number 2 using ehci-pci
+[    3.976259] systemd[1]: No hostname configured.
+[    3.977908] systemd[1]: Set hostname to <localhost>.
+[    3.979759] random: systemd: uninitialized urandom read (16 bytes read)
+[    3.981732] systemd[1]: Initializing machine ID from random generator.
+[    4.013011] random: systemd: uninitialized urandom read (16 bytes read)
+[    4.015080] random: systemd: uninitialized urandom read (16 bytes read)
+[    4.017296] random: systemd: uninitialized urandom read (16 bytes read)
+[    4.020042] random: systemd: uninitialized urandom read (16 bytes read)
+[    4.022213] random: systemd: uninitialized urandom read (16 bytes read)
+[    4.024579] random: systemd: uninitialized urandom read (16 bytes read)
+[    4.029805] systemd[1]: Reached target Timers.
+[    4.031496] systemd[1]: Starting Timers.
+[    4.033131] systemd[1]: Reached target Swap.
+[    4.034732] systemd[1]: Starting Swap.
+[    4.036462] systemd[1]: Created slice Root Slice.
+[    4.038136] systemd[1]: Starting Root Slice.
+[    4.039818] systemd[1]: Created slice System Slice.
+[    4.041630] systemd[1]: Starting System Slice.
+[    4.043376] systemd[1]: Listening on Journal Socket.
+[    4.045088] systemd[1]: Starting Journal Socket.
+[    4.047376] systemd[1]: Starting Create list of required static device nodes for the current kernel...
+[    4.050949] systemd[1]: Listening on udev Control Socket.
+[    4.053270] systemd[1]: Starting udev Control Socket.
+[    4.055525] systemd[1]: Reached target Slices.
+[    4.057169] systemd[1]: Starting Slices.
+[    4.058804] systemd[1]: Listening on udev Kernel Socket.
+[    4.060599] systemd[1]: Starting udev Kernel Socket.
+[    4.062311] systemd[1]: Reached target Sockets.
+[    4.063948] systemd[1]: Starting Sockets.
+[    4.065585] systemd[1]: Started Dispatch Password Requests to Console Directory Watch.
+[    4.068542] systemd[1]: Starting Dispatch Password Requests to Console Directory Watch.
+[    4.071529] systemd[1]: Reached target Paths.
+[    4.073147] systemd[1]: Starting Paths.
+[    4.075356] systemd[1]: Starting Apply Kernel Variables...
+[    4.077774] systemd[1]: Starting Journal Service...
+[    4.079562] systemd[1]: Reached target Local File Systems.
+[    4.081373] systemd[1]: Starting Local File Systems.
+[    4.083578] systemd[1]: Starting dracut cmdline hook...
+[    4.085722] systemd[1]: Started Create list of required static device nodes for the current kernel.
+[    4.089227] systemd[1]: Started Apply Kernel Variables.
+[    4.091709] systemd[1]: Starting Create Static Device Nodes in /dev...
+[    4.093505] usb 1-1: New USB device found, idVendor=0627, idProduct=0001
+[    4.093506] usb 1-1: New USB device strings: Mfr=1, Product=3, SerialNumber=5
+[    4.093508] usb 1-1: Product: QEMU USB Tablet
+[    4.093509] usb 1-1: Manufacturer: QEMU
+[    4.093510] usb 1-1: SerialNumber: 42
+[    4.095030] input: QEMU QEMU USB Tablet as /devices/pci0000:00/0000:00:06.7/usb1/1-1/1-1:1.0/input/input4
+[    4.095155] hid-generic 0003:0627:0001.0001: input,hidraw0: USB HID v0.01 Pointer [QEMU QEMU USB Tablet] on usb-0000:00:06.7-1/input0
+[    4.109913] systemd[1]: Started Journal Service.
+[    4.205098] RPC: Registered named UNIX socket transport module.
+[    4.207072] RPC: Registered udp transport module.
+[    4.208778] RPC: Registered tcp transport module.
+[    4.210489] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    4.381230] FDC 0 is a S82078B
+[    4.387984] libata version 3.00 loaded.
+[    4.455571] ata_piix 0000:00:01.1: version 2.13
+[    4.459682] scsi host0: ata_piix
+[    4.459940] virtio-pci 0000:00:03.0: irq 24 for MSI/MSI-X
+[    4.460041] virtio-pci 0000:00:03.0: irq 25 for MSI/MSI-X
+[    4.460140] virtio-pci 0000:00:03.0: irq 26 for MSI/MSI-X
+[    4.461288] scsi host2: ata_piix
+[    4.462478] virtio-pci 0000:00:04.0: irq 27 for MSI/MSI-X
+[    4.462585] virtio-pci 0000:00:04.0: irq 28 for MSI/MSI-X
+[    4.462692] virtio-pci 0000:00:04.0: irq 29 for MSI/MSI-X
+[    4.462793] virtio-pci 0000:00:04.0: irq 30 for MSI/MSI-X
+[    4.462892] virtio-pci 0000:00:04.0: irq 31 for MSI/MSI-X
+[    4.462994] virtio-pci 0000:00:04.0: irq 32 for MSI/MSI-X
+[    4.463094] virtio-pci 0000:00:04.0: irq 33 for MSI/MSI-X
+[    4.463908] ata1: PATA max MWDMA2 cmd 0x1f0 ctl 0x3f6 bmdma 0xc0e0 irq 14
+[    4.464257] scsi host1: Virtio SCSI HBA
+[    4.468780] ata2: PATA max MWDMA2 cmd 0x170 ctl 0x376 bmdma 0xc0e8 irq 15
+[    4.481310] scsi 1:0:0:0: Direct-Access     NUTANIX  VDISK            0    PQ: 0 ANSI: 5
+[    4.501422] scsi 1:0:1:0: Direct-Access     NUTANIX  VDISK            0    PQ: 0 ANSI: 5
+[    4.511603] tsc: Refined TSC clocksource calibration: 2200.000 MHz
+[    4.518549] scsi 1:0:2:0: Direct-Access     NUTANIX  VDISK            0    PQ: 0 ANSI: 5
+[    4.571055] random: fast init done
+[    4.595796] scsi 1:0:0:0: alua: supports implicit TPGS
+[    4.597538] scsi 1:0:0:0: alua: device naa.6506b8d0ca92cff4debd54284f27f042 port group 1 rel port ffffffff
+[    4.600749] scsi 1:0:0:0: alua: Attached
+[    4.602499] scsi 1:0:1:0: alua: supports implicit TPGS
+[    4.604229] scsi 1:0:1:0: alua: device naa.6506b8d86f9c56e4038b072e3cf1ac8d port group 1 rel port ffffffff
+[    4.607462] scsi 1:0:1:0: alua: Attached
+[    4.609195] scsi 1:0:2:0: alua: supports implicit TPGS
+[    4.610960] scsi 1:0:0:0: alua: transition timeout set to 60 seconds
+[    4.612885] scsi 1:0:0:0: alua: port group 01 state A preferred supports tolusna
+[    4.612892] scsi 1:0:2:0: alua: device naa.6506b8dfb861e7d96681ef0cbc6f784b port group 1 rel port ffffffff
+[    4.612896] scsi 1:0:2:0: alua: Attached
+[    4.620825] scsi 1:0:1:0: alua: transition timeout set to 60 seconds
+[    4.622811] scsi 1:0:1:0: alua: port group 01 state A preferred supports tolusna
+[    4.622976] scsi 1:0:2:0: alua: transition timeout set to 60 seconds
+[    4.622979] scsi 1:0:2:0: alua: port group 01 state A preferred supports tolusna
+[    4.623072] ata1.01: NODEV after polling detection
+[    4.623435] ata1.00: ATAPI: QEMU DVD-ROM, 2.5+, max UDMA/100
+[    4.623998] ata1.00: configured for MWDMA2
+[    4.635046] scsi 0:0:0:0: CD-ROM            QEMU     QEMU DVD-ROM     2.5+ PQ: 0 ANSI: 5
+[    4.658824] sd 1:0:2:0: [sdc] 629145600 512-byte logical blocks: (322 GB/300 GiB)
+[    4.658885] sd 1:0:0:0: [sda] 41943040 512-byte logical blocks: (21.4 GB/20.0 GiB)
+[    4.658887] sd 1:0:0:0: [sda] 4096-byte physical blocks
+[    4.659746] sd 1:0:0:0: [sda] Write Protect is off
+[    4.659747] sd 1:0:0:0: [sda] Mode Sense: 6f 00 00 00
+[    4.659981] sd 1:0:0:0: [sda] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
+[    4.662764]  sda: sda1
+[    4.663140] sd 1:0:1:0: [sdb] 8388608 512-byte logical blocks: (4.29 GB/4.00 GiB)
+[    4.663142] sd 1:0:1:0: [sdb] 4096-byte physical blocks
+[    4.663930] sd 1:0:1:0: [sdb] Write Protect is off
+[    4.663935] sd 1:0:1:0: [sdb] Mode Sense: 6f 00 00 00
+[    4.664126] sd 1:0:1:0: [sdb] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
+[    4.664299] sd 1:0:0:0: [sda] Attached SCSI disk
+[    4.666215]  sdb: sdb1
+[    4.667456] sd 1:0:1:0: [sdb] Attached SCSI disk
+[    4.686469] sd 1:0:2:0: [sdc] 4096-byte physical blocks
+[    4.689061] sd 1:0:2:0: [sdc] Write Protect is off
+[    4.690765] sd 1:0:2:0: [sdc] Mode Sense: 6f 00 00 00
+[    4.691062] sd 1:0:2:0: [sdc] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
+[    4.699334] sr 0:0:0:0: [sr0] scsi3-mmc drive: 4x/4x cd/rw xa/form2 tray
+[    4.699336] cdrom: Uniform CD-ROM driver Revision: 3.20
+[    4.699553] sr 0:0:0:0: Attached scsi CD-ROM sr0
+[    4.725258]  sdc: sdc1
+[    4.728602] sd 1:0:2:0: [sdc] Attached SCSI disk
+[    4.878036] SGI XFS with ACLs, security attributes, no debug enabled
+[    4.887624] XFS (sda1): Mounting V5 Filesystem
+[    4.933495] XFS (sda1): Ending clean mount
+[    5.182691] systemd-journald[103]: Received SIGTERM from PID 1 (systemd).
+[    5.280481] type=1404 audit(1566776842.844:2): enforcing=1 old_enforcing=0 auid=4294967295 ses=4294967295
+[    5.319792] SELinux: 2048 avtab hash slots, 106465 rules.
+[    5.363144] SELinux: 2048 avtab hash slots, 106465 rules.
+[    5.390150] SELinux:  8 users, 14 roles, 5009 types, 310 bools, 1 sens, 1024 cats
+[    5.390155] SELinux:  97 classes, 106465 rules
+[    5.394285] SELinux:  Completing initialization.
+[    5.394288] SELinux:  Setting up existing superblocks.
+[    5.404333] type=1403 audit(1566776842.968:3): policy loaded auid=4294967295 ses=4294967295
+[    5.415330] systemd[1]: Successfully loaded SELinux policy in 135.174ms.
+[    5.476825] ip_tables: (C) 2000-2006 Netfilter Core Team
+[    5.478758] systemd[1]: Inserted module 'ip_tables'
+[    5.496933] systemd[1]: Relabelled /dev and /run in 13.565ms.
+[    5.782721] random: crng init done
+[    5.947361] piix4_smbus 0000:00:01.3: SMBus Host Controller at 0x700, revision 0
+[    6.163883] [drm] Found bochs VGA, ID 0xb0c0.
+[    6.165519] [drm] Framebuffer size 16384 kB @ 0xfd000000, mmio @ 0xfebd0000.
+[    6.182186] [TTM] Zone  kernel: Available graphics memory: 3988184 kiB
+[    6.184182] [TTM] Zone   dma32: Available graphics memory: 2097152 kiB
+[    6.186143] [TTM] Initializing pool allocator
+[    6.187762] [TTM] Initializing DMA pool allocator
+[    6.202110] fbcon: bochsdrmfb (fb0) is primary device
+[    6.225782] Console: switching to colour frame buffer device 128x48
+[    6.228628] bochs-drm 0000:00:02.0: fb0: bochsdrmfb frame buffer device
+[    6.241833] [drm] Initialized bochs-drm 1.0.0 20130925 for 0000:00:02.0 on minor 0
+[    6.257736] input: PC Speaker as /devices/platform/pcspkr/input/input5
+[    6.271568] sd 1:0:0:0: Attached scsi generic sg0 type 0
+[    6.272701] sd 1:0:1:0: Attached scsi generic sg1 type 0
+[    6.273854] sd 1:0:2:0: Attached scsi generic sg2 type 0
+[    6.275075] sr 0:0:0:0: Attached scsi generic sg3 type 5
+[    6.319785] cryptd: max_cpu_qlen set to 100
+[    6.336395] AVX2 version of gcm_enc/dec engaged.
+[    6.337022] AES CTR mode by8 optimization enabled
+[    6.349475] ppdev: user-space parallel port driver
+[    6.353605] alg: No test for __gcm-aes-aesni (__driver-gcm-aes-aesni)
+[    6.358887] alg: No test for __generic-gcm-aes-aesni (__driver-generic-gcm-aes-aesni)
+[    6.372506] Adding 4194296k swap on /dev/sdb1.  Priority:-1 extents:1 across:4194296k FS
+[    6.412874] device-mapper: uevent: version 1.0.3
+[    6.413704] device-mapper: ioctl: 4.37.0-ioctl (2017-09-20) initialised: dm-devel@redhat.com
+[    8.457127] EXT4-fs (dm-1): mounted filesystem with ordered data mode. Opts: (null)
+[    8.457864] EXT4-fs (dm-2): mounted filesystem with ordered data mode. Opts: (null)
+[    8.458019] EXT4-fs (dm-0): mounted filesystem with ordered data mode. Opts: (null)
+[    8.466049] EXT4-fs (dm-3): mounted filesystem with ordered data mode. Opts: (null)
+[    8.479266] systemd-journald[398]: Received request to flush runtime journal from PID 1
+[    9.985016] dm-0: WRITE SAME failed. Manually zeroing.
+[ 3763.175768] type=1400 audit(1566805801.630:4): avc:  denied  { getattr } for  pid=9710 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[ 3763.179784] type=1400 audit(1566805801.634:5): avc:  denied  { getattr } for  pid=9710 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[75583.319889] type=1400 audit(1566877621.715:6): avc:  denied  { getattr } for  pid=21286 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[75583.323294] type=1400 audit(1566877621.718:7): avc:  denied  { getattr } for  pid=21286 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[161623.685353] type=1400 audit(1566963662.005:8): avc:  denied  { getattr } for  pid=23376 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[161623.690226] type=1400 audit(1566963662.010:9): avc:  denied  { getattr } for  pid=23376 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[246222.976811] type=1400 audit(1567048261.222:10): avc:  denied  { getattr } for  pid=25428 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[246222.980196] type=1400 audit(1567048261.226:11): avc:  denied  { getattr } for  pid=25428 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[332323.374836] type=1400 audit(1567134361.549:12): avc:  denied  { getattr } for  pid=27591 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[332323.378394] type=1400 audit(1567134361.553:13): avc:  denied  { getattr } for  pid=27591 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[421303.750811] type=1400 audit(1567223341.849:14): avc:  denied  { getattr } for  pid=29733 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[421303.754519] type=1400 audit(1567223341.853:15): avc:  denied  { getattr } for  pid=29733 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[507644.013866] type=1400 audit(1567309682.045:16): avc:  denied  { getattr } for  pid=31822 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[507644.034730] type=1400 audit(1567309682.066:17): avc:  denied  { getattr } for  pid=31822 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[592063.341716] type=1400 audit(1567394101.302:18): avc:  denied  { getattr } for  pid=33855 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[592063.345314] type=1400 audit(1567394101.306:19): avc:  denied  { getattr } for  pid=33855 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[678583.626037] type=1400 audit(1567480621.518:20): avc:  denied  { getattr } for  pid=35921 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[678583.629752] type=1400 audit(1567480621.522:21): avc:  denied  { getattr } for  pid=35921 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[765224.022497] type=1400 audit(1567567261.838:22): avc:  denied  { getattr } for  pid=38363 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[765224.027420] type=1400 audit(1567567261.843:23): avc:  denied  { getattr } for  pid=38363 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[852223.400930] type=1400 audit(1567654261.141:24): avc:  denied  { getattr } for  pid=42617 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[852223.404586] type=1400 audit(1567654261.145:25): avc:  denied  { getattr } for  pid=42617 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[939163.863776] type=1400 audit(1567741201.532:26): avc:  denied  { getattr } for  pid=48057 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[939163.874366] type=1400 audit(1567741201.542:27): avc:  denied  { getattr } for  pid=48057 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1024124.257490] type=1400 audit(1567826161.852:28): avc:  denied  { getattr } for  pid=54397 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1024124.265093] type=1400 audit(1567826161.860:29): avc:  denied  { getattr } for  pid=54397 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1110944.484257] type=1400 audit(1567912982.007:30): avc:  denied  { getattr } for  pid=56630 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1110944.503601] type=1400 audit(1567912982.027:31): avc:  denied  { getattr } for  pid=56630 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1196323.731669] type=1400 audit(1567998361.183:32): avc:  denied  { getattr } for  pid=58801 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1196323.739944] type=1400 audit(1567998361.191:33): avc:  denied  { getattr } for  pid=58801 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1284163.784910] type=1400 audit(1568086201.160:34): avc:  denied  { getattr } for  pid=77251 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1284163.794094] type=1400 audit(1568086201.170:35): avc:  denied  { getattr } for  pid=77251 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1371044.261365] type=1400 audit(1568173081.564:36): avc:  denied  { getattr } for  pid=122162 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1371044.269244] type=1400 audit(1568173081.572:37): avc:  denied  { getattr } for  pid=122162 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1457624.828521] type=1400 audit(1568259662.065:38): avc:  denied  { getattr } for  pid=219650 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1457624.837109] type=1400 audit(1568259662.073:39): avc:  denied  { getattr } for  pid=219650 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1542344.304445] type=1400 audit(1568344381.473:40): avc:  denied  { getattr } for  pid=76810 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1542344.316096] type=1400 audit(1568344381.484:41): avc:  denied  { getattr } for  pid=76810 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1628684.875325] type=1400 audit(1568430721.972:42): avc:  denied  { getattr } for  pid=187638 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1628684.884061] type=1400 audit(1568430721.981:43): avc:  denied  { getattr } for  pid=187638 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1715984.386731] type=1400 audit(1568518021.411:44): avc:  denied  { getattr } for  pid=70770 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1715984.401846] type=1400 audit(1568518021.427:45): avc:  denied  { getattr } for  pid=70770 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1802024.948841] type=1400 audit(1568604061.907:46): avc:  denied  { getattr } for  pid=190766 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1802024.957603] type=1400 audit(1568604061.915:47): avc:  denied  { getattr } for  pid=190766 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1890044.566533] type=1400 audit(1568692081.451:48): avc:  denied  { getattr } for  pid=21783 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1890044.574362] type=1400 audit(1568692081.459:49): avc:  denied  { getattr } for  pid=21783 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1976025.105846] type=1400 audit(1568778061.920:50): avc:  denied  { getattr } for  pid=112758 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[1976025.113520] type=1400 audit(1568778061.928:51): avc:  denied  { getattr } for  pid=112758 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2061944.570079] type=1400 audit(1568863981.319:52): avc:  denied  { getattr } for  pid=189970 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2061944.578727] type=1400 audit(1568863981.328:53): avc:  denied  { getattr } for  pid=189970 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2149305.115651] type=1400 audit(1568951341.794:54): avc:  denied  { getattr } for  pid=207336 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2149305.123522] type=1400 audit(1568951341.801:55): avc:  denied  { getattr } for  pid=207336 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2234204.507473] type=1400 audit(1569036241.116:56): avc:  denied  { getattr } for  pid=225880 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2234204.515408] type=1400 audit(1569036241.124:57): avc:  denied  { getattr } for  pid=225880 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2322164.771309] type=1400 audit(1569124201.311:58): avc:  denied  { getattr } for  pid=227951 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2322164.786777] type=1400 audit(1569124201.326:59): avc:  denied  { getattr } for  pid=227951 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2407185.087269] type=1400 audit(1569209221.558:60): avc:  denied  { getattr } for  pid=229972 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2407185.094874] type=1400 audit(1569209221.566:61): avc:  denied  { getattr } for  pid=229972 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2494305.377959] type=1400 audit(1569296341.777:62): avc:  denied  { getattr } for  pid=232006 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2494305.386599] type=1400 audit(1569296341.786:63): avc:  denied  { getattr } for  pid=232006 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2581245.627997] type=1400 audit(1569383281.960:64): avc:  denied  { getattr } for  pid=234107 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2581245.637988] type=1400 audit(1569383281.970:65): avc:  denied  { getattr } for  pid=234107 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2665844.929585] type=1400 audit(1569467881.194:66): avc:  denied  { getattr } for  pid=236154 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2665844.941287] type=1400 audit(1569467881.206:67): avc:  denied  { getattr } for  pid=236154 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2752665.372704] type=1400 audit(1569554701.568:68): avc:  denied  { getattr } for  pid=69729 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2752665.380604] type=1400 audit(1569554701.576:69): avc:  denied  { getattr } for  pid=69729 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2838285.762862] type=1400 audit(1569640321.892:70): avc:  denied  { getattr } for  pid=132109 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2838285.774206] type=1400 audit(1569640321.903:71): avc:  denied  { getattr } for  pid=132109 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2926365.066690] type=1400 audit(1569728401.131:72): avc:  denied  { getattr } for  pid=208366 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[2926365.082107] type=1400 audit(1569728401.146:73): avc:  denied  { getattr } for  pid=208366 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3010725.429238] type=1400 audit(1569812761.427:74): avc:  denied  { getattr } for  pid=43498 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3010725.436936] type=1400 audit(1569812761.435:75): avc:  denied  { getattr } for  pid=43498 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3099345.908235] type=1400 audit(1569901381.834:76): avc:  denied  { getattr } for  pid=50317 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3099345.915740] type=1400 audit(1569901381.841:77): avc:  denied  { getattr } for  pid=50317 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3185325.580202] type=1400 audit(1569987361.437:78): avc:  denied  { getattr } for  pid=53675 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3185325.592458] type=1400 audit(1569987361.449:79): avc:  denied  { getattr } for  pid=53675 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3269985.859003] type=1400 audit(1570072021.648:80): avc:  denied  { getattr } for  pid=55689 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3269985.869707] type=1400 audit(1570072021.659:81): avc:  denied  { getattr } for  pid=55689 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3358486.231721] type=1400 audit(1570160521.947:82): avc:  denied  { getattr } for  pid=73385 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3358486.239376] type=1400 audit(1570160521.954:83): avc:  denied  { getattr } for  pid=73385 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3443085.670666] type=1400 audit(1570245121.317:84): avc:  denied  { getattr } for  pid=127983 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3443085.680982] type=1400 audit(1570245121.327:85): avc:  denied  { getattr } for  pid=127983 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3530626.054124] type=1400 audit(1570332661.635:86): avc:  denied  { getattr } for  pid=195736 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3530626.067870] type=1400 audit(1570332661.648:87): avc:  denied  { getattr } for  pid=195736 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3617146.444027] type=1400 audit(1570419181.959:88): avc:  denied  { getattr } for  pid=19945 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3617146.451899] type=1400 audit(1570419181.967:89): avc:  denied  { getattr } for  pid=19945 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3704385.896367] type=1400 audit(1570506421.336:90): avc:  denied  { getattr } for  pid=27980 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3704385.904631] type=1400 audit(1570506421.344:91): avc:  denied  { getattr } for  pid=27980 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3789826.257360] type=1400 audit(1570591861.619:92): avc:  denied  { getattr } for  pid=31938 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3789826.265158] type=1400 audit(1570591861.627:93): avc:  denied  { getattr } for  pid=31938 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3804099.758361] brktest[35649]: segfault at 66 ip 00007fde555defb9 sp 00007ffd57b408d0 error 4 in libc-2.17.so[7fde55592000+1c2000]
+[3805322.092732] brktest[35769]: segfault at 69 ip 00007f5020569fb9 sp 00007fffd8827460 error 4 in libc-2.17.so[7f502051d000+1c2000]
+[3810061.503971] brktest[36291]: segfault at aa ip 00007f912fd79fb9 sp 00007fffc654ef30 error 4 in libc-2.17.so[7f912fd2d000+1c2000]
+[3810134.268710] brktest[36312]: segfault at aa ip 00007fb97ca68fb9 sp 00007fff3287aff0 error 4 in libc-2.17.so[7fb97ca1c000+1c2000]
+[3810162.875049] brktest[36318]: segfault at aa ip 00007fb8b6863fb9 sp 00007fff156e2230 error 4 in libc-2.17.so[7fb8b6817000+1c2000]
+[3810465.589642] brktest[36385]: segfault at aa ip 00007f0f5adc7fb9 sp 00007ffddc9411f0 error 4 in libc-2.17.so[7f0f5ad7b000+1c2000]
+[3810491.620755] brktest[36388]: segfault at aa ip 00007f1f62970fb9 sp 00007ffcf61cf7d0 error 4 in libc-2.17.so[7f1f62924000+1c2000]
+[3810598.027630] brktest[36405]: segfault at b2 ip 00007f7dd587ffb9 sp 00007ffdb07b3050 error 4 in libc-2.17.so[7f7dd5833000+1c2000]
+[3811220.054430] brktest[36459]: segfault at b2 ip 00007f17d0a6dfb9 sp 00007ffd72a7e580 error 4 in libc-2.17.so[7f17d0a21000+1c2000]
+[3811686.925219] brktest[36530]: segfault at 86 ip 00007fa2fa91bfb9 sp 00007ffd5a2a5480 error 4 in libc-2.17.so[7fa2fa8cf000+1c2000]
+[3811855.999163] brktest[36555]: segfault at 86 ip 00007f460176afb9 sp 00007fffad035540 error 4 in libc-2.17.so[7f460171e000+1c2000]
+[3812287.545556] brktest[36600]: segfault at b3 ip 00007f5685e2bfb9 sp 00007ffddc55dd80 error 4 in libc-2.17.so[7f5685ddf000+1c2000]
+[3875446.707446] type=1400 audit(1570677482.001:94): avc:  denied  { getattr } for  pid=39976 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3875446.715032] type=1400 audit(1570677482.009:95): avc:  denied  { getattr } for  pid=39976 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3961366.166743] type=1400 audit(1570763401.389:96): avc:  denied  { getattr } for  pid=46788 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3961366.176016] type=1400 audit(1570763401.398:97): avc:  denied  { getattr } for  pid=46788 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[3981342.189438] brktest[51822]: segfault at 9a ip 00007f9863d14fb9 sp 00007ffed44aa470 error 4 in libc-2.17.so[7f9863cc8000+1c2000]
+[3981858.513274] brktest[51922]: segfault at 9a ip 00007f21d0c7dfb9 sp 00007ffd5fa61ca0 error 4 in libc-2.17.so[7f21d0c31000+1c2000]
+[3982533.389937] brktest[52009]: segfault at a7 ip 00007f532dd7afb9 sp 00007ffc5acced90 error 4 in libc-2.17.so[7f532dd2e000+1c2000]
+[3983742.224198] brktest[52150]: segfault at 9a ip 00007f2bff611fb9 sp 00007fff488a8170 error 4 in libc-2.17.so[7f2bff5c5000+1c2000]
+[3983928.042048] brktest[52176]: segfault at a7 ip 00007efd4a4d3fb9 sp 00007fff0d4603b0 error 4 in libc-2.17.so[7efd4a487000+1c2000]
+[3984009.692246] brktest[52180]: segfault at ad ip 00007fa2d266afb9 sp 00007ffc80c0f9d0 error 4 in libc-2.17.so[7fa2d261e000+1c2000]
+[4050046.622014] type=1400 audit(1570852081.773:98): avc:  denied  { getattr } for  pid=54350 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4050046.629819] type=1400 audit(1570852081.781:99): avc:  denied  { getattr } for  pid=54350 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4136206.013916] type=1400 audit(1570938241.098:100): avc:  denied  { getattr } for  pid=56418 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4136206.028890] type=1400 audit(1570938241.113:101): avc:  denied  { getattr } for  pid=56418 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4220326.370591] type=1400 audit(1571022361.388:102): avc:  denied  { getattr } for  pid=58617 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4220326.381427] type=1400 audit(1571022361.399:103): avc:  denied  { getattr } for  pid=58617 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4307746.816058] type=1400 audit(1571109781.762:104): avc:  denied  { getattr } for  pid=63134 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4307746.826310] type=1400 audit(1571109781.772:105): avc:  denied  { getattr } for  pid=63134 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4395646.226679] type=1400 audit(1571197681.105:106): avc:  denied  { getattr } for  pid=67806 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4395646.235009] type=1400 audit(1571197681.114:107): avc:  denied  { getattr } for  pid=67806 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4479706.598165] type=1400 audit(1571281741.412:108): avc:  denied  { getattr } for  pid=78587 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4479706.605781] type=1400 audit(1571281741.420:109): avc:  denied  { getattr } for  pid=78587 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4487812.427004] comprFile[80244]: segfault at dc ip 00007fab698a1fb9 sp 00007fab68e727e0 error 4 in libc-2.17.so[7fab69855000+1c2000]
+[4494018.072416] comprFileT[81330]: segfault at df ip 00007fef393e3fb9 sp 00007fef389b47d0 error 4 in libc-2.17.so[7fef39397000+1c2000]
+[4494023.837752] comprFileT[81335]: segfault at df ip 00007f8f7af8efb9 sp 00007f8f7ad607d0 error 4 in libc-2.17.so[7f8f7af42000+1c2000]
+[4496073.401091] comprFileT[81758]: segfault at df ip 00007fd1d7286fb9 sp 00007fd1d68577d0 error 4 in libc-2.17.so[7fd1d723a000+1c2000]
+[4498100.031514] comprFileT[82259]: segfault at e0 ip 00007f23f52f9fb9 sp 00007f23f50cb7d0 error 4 in libc-2.17.so[7f23f52ad000+1c2000]
+[4566407.147139] type=1400 audit(1571368441.890:110): avc:  denied  { getattr } for  pid=100403 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4566407.155668] type=1400 audit(1571368441.898:111): avc:  denied  { getattr } for  pid=100403 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4652806.558397] type=1400 audit(1571454841.234:112): avc:  denied  { getattr } for  pid=112641 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4652806.566544] type=1400 audit(1571454841.242:113): avc:  denied  { getattr } for  pid=112641 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4739446.938972] type=1400 audit(1571541481.548:114): avc:  denied  { getattr } for  pid=121687 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4739446.954495] type=1400 audit(1571541481.564:115): avc:  denied  { getattr } for  pid=121687 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4827227.326342] type=1400 audit(1571629261.864:116): avc:  denied  { getattr } for  pid=131144 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4827227.334348] type=1400 audit(1571629261.872:117): avc:  denied  { getattr } for  pid=131144 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4913926.962787] type=1400 audit(1571715961.425:118): avc:  denied  { getattr } for  pid=151557 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4913926.974191] type=1400 audit(1571715961.437:119): avc:  denied  { getattr } for  pid=151557 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4998887.626370] type=1400 audit(1571800922.018:120): avc:  denied  { getattr } for  pid=178687 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[4998887.634297] type=1400 audit(1571800922.026:121): avc:  denied  { getattr } for  pid=178687 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5086727.231339] type=1400 audit(1571888761.547:122): avc:  denied  { getattr } for  pid=203895 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5086727.238967] type=1400 audit(1571888761.555:123): avc:  denied  { getattr } for  pid=203895 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5171807.767823] type=1400 audit(1571973842.009:124): avc:  denied  { getattr } for  pid=219991 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5171807.775998] type=1400 audit(1571973842.018:125): avc:  denied  { getattr } for  pid=219991 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5257367.405578] type=1400 audit(1572059401.574:126): avc:  denied  { getattr } for  pid=3301 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5257367.416703] type=1400 audit(1572059401.585:127): avc:  denied  { getattr } for  pid=3301 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5345927.911253] type=1400 audit(1572147962.005:128): avc:  denied  { getattr } for  pid=163681 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5345927.926465] type=1400 audit(1572147962.020:129): avc:  denied  { getattr } for  pid=163681 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5431787.423632] type=1400 audit(1572233821.443:130): avc:  denied  { getattr } for  pid=44878 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5431787.431582] type=1400 audit(1572233821.451:131): avc:  denied  { getattr } for  pid=44878 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5518187.983004] type=1400 audit(1572320221.924:132): avc:  denied  { getattr } for  pid=65597 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5518187.991481] type=1400 audit(1572320221.933:133): avc:  denied  { getattr } for  pid=65597 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5603207.598068] type=1400 audit(1572405241.458:134): avc:  denied  { getattr } for  pid=82779 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5603207.606260] type=1400 audit(1572405241.466:135): avc:  denied  { getattr } for  pid=82779 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5690808.087526] type=1400 audit(1572492841.876:136): avc:  denied  { getattr } for  pid=104380 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5690808.095175] type=1400 audit(1572492841.883:137): avc:  denied  { getattr } for  pid=104380 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5777747.531342] type=1400 audit(1572579781.241:138): avc:  denied  { getattr } for  pid=122721 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5777747.538961] type=1400 audit(1572579781.249:139): avc:  denied  { getattr } for  pid=122721 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5864147.915397] type=1400 audit(1572666181.546:140): avc:  denied  { getattr } for  pid=139058 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5864147.922844] type=1400 audit(1572666181.553:141): avc:  denied  { getattr } for  pid=139058 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5948988.305467] type=1400 audit(1572751021.862:142): avc:  denied  { getattr } for  pid=156273 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[5948988.320877] type=1400 audit(1572751021.877:143): avc:  denied  { getattr } for  pid=156273 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6034787.722878] type=1400 audit(1572836821.204:144): avc:  denied  { getattr } for  pid=176382 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6034787.730408] type=1400 audit(1572836821.211:145): avc:  denied  { getattr } for  pid=176382 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6039374.660012] FS-Cache: Loaded
+[6039374.708193] FS-Cache: Netfs 'nfs' registered for caching
+[6039374.717255] Key type dns_resolver registered
+[6039374.755803] NFS: Registering the id_resolver key type
+[6039374.757797] Key type id_resolver registered
+[6039374.759569] Key type id_legacy registered
+[6122388.106991] type=1400 audit(1572924421.508:146): avc:  denied  { getattr } for  pid=186654 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6122388.114827] type=1400 audit(1572924421.516:147): avc:  denied  { getattr } for  pid=186654 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6208128.603031] type=1400 audit(1573010161.933:148): avc:  denied  { getattr } for  pid=193280 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6208128.611110] type=1400 audit(1573010161.941:149): avc:  denied  { getattr } for  pid=193280 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6295848.100517] type=1400 audit(1573097881.356:150): avc:  denied  { getattr } for  pid=229319 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6295848.108075] type=1400 audit(1573097881.363:151): avc:  denied  { getattr } for  pid=229319 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6381588.571896] type=1400 audit(1573183621.757:152): avc:  denied  { getattr } for  pid=1456 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6381588.579799] type=1400 audit(1573183621.765:153): avc:  denied  { getattr } for  pid=1456 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6467868.121057] type=1400 audit(1573269901.237:154): avc:  denied  { getattr } for  pid=26849 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6467868.129355] type=1400 audit(1573269901.245:155): avc:  denied  { getattr } for  pid=26849 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6553668.679646] type=1400 audit(1573355701.730:156): avc:  denied  { getattr } for  pid=36132 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6553668.695129] type=1400 audit(1573355701.745:157): avc:  denied  { getattr } for  pid=36132 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6640488.098507] type=1400 audit(1573442521.081:158): avc:  denied  { getattr } for  pid=42721 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6640488.105884] type=1400 audit(1573442521.088:159): avc:  denied  { getattr } for  pid=42721 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6728208.574886] type=1400 audit(1573530241.486:160): avc:  denied  { getattr } for  pid=55991 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6728208.582613] type=1400 audit(1573530241.493:161): avc:  denied  { getattr } for  pid=55991 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6814969.049761] type=1400 audit(1573617001.894:162): avc:  denied  { getattr } for  pid=68773 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6814969.057758] type=1400 audit(1573617001.902:163): avc:  denied  { getattr } for  pid=68773 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6900828.563411] type=1400 audit(1573702861.334:164): avc:  denied  { getattr } for  pid=106177 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6900828.570915] type=1400 audit(1573702861.341:165): avc:  denied  { getattr } for  pid=106177 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6986869.093619] type=1400 audit(1573788901.794:166): avc:  denied  { getattr } for  pid=129983 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[6986869.100927] type=1400 audit(1573788901.801:167): avc:  denied  { getattr } for  pid=129983 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7073088.607620] type=1400 audit(1573875121.239:168): avc:  denied  { getattr } for  pid=147190 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7073088.614928] type=1400 audit(1573875121.246:169): avc:  denied  { getattr } for  pid=147190 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7157988.930474] type=1400 audit(1573960021.496:170): avc:  denied  { getattr } for  pid=149894 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7157988.945143] type=1400 audit(1573960021.511:171): avc:  denied  { getattr } for  pid=149894 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7246849.255616] type=1400 audit(1574048881.750:172): avc:  denied  { getattr } for  pid=152683 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7246849.262971] type=1400 audit(1574048881.758:173): avc:  denied  { getattr } for  pid=152683 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7333249.601637] type=1400 audit(1574135282.025:174): avc:  denied  { getattr } for  pid=155852 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7333249.609342] type=1400 audit(1574135282.033:175): avc:  denied  { getattr } for  pid=155852 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7417429.091768] type=1400 audit(1574219461.446:176): avc:  denied  { getattr } for  pid=179472 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7417429.099445] type=1400 audit(1574219461.453:177): avc:  denied  { getattr } for  pid=179472 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7503889.610625] type=1400 audit(1574305921.893:178): avc:  denied  { getattr } for  pid=201317 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7503889.619393] type=1400 audit(1574305921.901:179): avc:  denied  { getattr } for  pid=201317 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7545271.870758] atkbd serio0: Unknown key pressed (translated set 2, code 0x0 on isa0060/serio0).
+[7545271.873500] atkbd serio0: Use 'setkeycodes 00 <keycode>' to make it known.
+[7545272.303158] atkbd serio0: Unknown key released (translated set 2, code 0x0 on isa0060/serio0).
+[7545272.305136] atkbd serio0: Use 'setkeycodes 00 <keycode>' to make it known.
+[7591429.091739] type=1400 audit(1574393461.303:180): avc:  denied  { getattr } for  pid=215232 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7591429.095688] type=1400 audit(1574393461.307:181): avc:  denied  { getattr } for  pid=215232 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7678609.553479] type=1400 audit(1574480641.698:182): avc:  denied  { getattr } for  pid=21804 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7678609.557287] type=1400 audit(1574480641.702:183): avc:  denied  { getattr } for  pid=21804 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7763988.983026] type=1400 audit(1574566021.062:184): avc:  denied  { getattr } for  pid=60712 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file
+[7763988.993805] type=1400 audit(1574566021.072:185): avc:  denied  { getattr } for  pid=60712 comm="logrotate" path="/var/log/yum.log" dev="dm-2" ino=13 scontext=system_u:system_r:logrotate_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_t:s0 tclass=file

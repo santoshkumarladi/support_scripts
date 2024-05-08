@@ -1,0 +1,5 @@
+--stargate_block_store_disable_constraint=true
+--stargate_block_store_enabled=true
+--fetch_disk_config_from_known_offset=True
+--spdk_enabled=True
+--debug=true

@@ -1,0 +1,3 @@
+--rpc_client_v2_large_message_threshold_bytes=0
+--curator_vdisk_block_adaptive_scan_params=2,32,4,1000
+--medusa_metadata_serialized_size_max_bytes=1048576

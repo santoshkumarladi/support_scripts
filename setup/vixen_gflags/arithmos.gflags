@@ -1,0 +1,5 @@
+--log_generate_coredump_on_failure=false
+--init_nutanix_core_dir=/home/nutanix/data/cores
+--init_nutanix_core_file_size_bytes=1024
+--enable_binary_logging=false
+--binary_logging_enabled=false

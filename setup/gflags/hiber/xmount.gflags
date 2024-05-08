@@ -1,0 +1,4 @@
+--self_monitoring_http_request_timeout_secs=300
+--xmount_read_only_mode=False
+--init_nutanix_core_dir=/home/nutanix/data/cores/
+--log_generate_coredump_on_failure=True

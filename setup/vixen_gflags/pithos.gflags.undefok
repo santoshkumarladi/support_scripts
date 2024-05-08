@@ -1,0 +1,5 @@
+--log_generate_coredump_on_failure=false
+--enable_binary_logging=false
+--binary_logging_enabled=false
+#--pithos_binary_logging_enabled=true
+--undefok=log_generate_coredump_on_failure,enable_binary_logging,binary_logging_enabled

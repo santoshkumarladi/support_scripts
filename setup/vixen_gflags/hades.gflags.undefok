@@ -1,0 +1,2 @@
+--spdk_enabled=True
+--undefok=spdk_enabled

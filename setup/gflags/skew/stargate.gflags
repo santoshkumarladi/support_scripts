@@ -1,0 +1,8 @@
+--activity_tracer_default_sampling_frequency=1
+--stargate_erasure_code_threshold_seconds=8200
+--medusa_binary_log_enabled=false
+--binary_logging_enabled=true
+--estore_suspend_orphaned_egroup_deletion=true
+--iscsi_binary_logging_enabled=false
+--smb_binary_logging_enabled=false
+--estore_experimental_dump_corrupt_slices=true

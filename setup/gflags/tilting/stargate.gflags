@@ -1,0 +1,8 @@
+--stargate_merged_vblocks_enabled=true
+--activity_tracer_default_sampling_frequency=1
+--stargate_aes_enabled=true
+--stargate_aes_disable_constraint_checks=true
+--stargate_aes_enable_on_all_containers=true
+--binary_logging_enabled=False
+--estore_experimental_dump_corrupt_slices=true
+--estore_suspend_orphaned_egroup_deletion=true
